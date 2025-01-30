@@ -1,0 +1,27 @@
+@import url(vendor/normalize.css);
+@import url(vendor/fonts/fonts.css);
+
+.btn {
+  cursor: pointer;
+  border: none;
+}
+
+.btn:hover {
+  opacity: 0.8;
+}
+
+.link {
+  cursor: pointer;
+}
+
+.link:hover {
+  opacity: 0.8;
+}
+
+.inpt {
+  cursor: pointer;
+}
+
+.inpt:hover {
+  opacity: 0.8;
+}
