@@ -1,34 +1,27 @@
-import { useState } from 'react';
-
 import './Row.css';
 import Checkbox from '../Checkbox/Checkbox';
-import { achain } from '../../utils/functools';
+import { getValue } from '../../utils/functools';
 
-function Row ({item, keys, handleDoubleClick}) {
-  const [checked, setChecked] = useState(false);
-
-  function onDoubleClick() {
-    handleDoubleClick(item);
-  }
-
-  function getValue(data) {
-    if (data.calcValue) {
-      return data.calcValue(item);
-    }
-    if (data.formatFunc) {
-      return data.formatFunc(achain(item, data.key));
-    }
-    return achain(item, data.key);
-  }
-
+function Row ({
+  item,
+  keys,
+  handleDoubleClick,
+  checked,
+  handleSelect,
+}) {
   return (
-    <tr className='list-item'>
-      <td>
+    <tr className='row'>
+      <td key='0' className='row__td row__select-td'>
         <Checkbox checked={checked}
-                  handleCheck={() => setChecked(!checked)}/>
+                  handleChecked={() => handleSelect(item)}/>
       </td>
       {
-        keys.map(key =><td onDoubleClick={onDoubleClick}>{getValue(key)}</td>)
+        keys.map(
+          (key, index) =><td className='row__td'
+                             key={index + 1}
+                             onClick={() => handleSelect(item)}
+                             onDoubleClick={() => handleDoubleClick(item)}>{getValue(item, key)}</td>
+        )
       }
     </tr>
   );

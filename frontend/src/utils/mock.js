@@ -39,6 +39,30 @@ export const USERS = [
     isActive: false,
     updated: '2024-01-29T20:55:00.123456Z'
   },
+  {
+    id: 5,
+    username: 'admin',
+    roleType: 'admin',
+    isActive: true,
+    lastLogin: '2025-01-29T20:55:00.123456Z',
+    updated: '2024-01-29T20:55:00.123456Z'
+  },
+  {
+    id: 6,
+    username: 'admin',
+    roleType: 'admin',
+    isActive: true,
+    lastLogin: '2025-01-29T20:55:00.123456Z',
+    updated: '2024-01-29T20:55:00.123456Z'
+  },
+  {
+    id: 7,
+    username: 'admin',
+    roleType: 'admin',
+    isActive: true,
+    lastLogin: '2025-01-29T20:55:00.123456Z',
+    updated: '2024-01-29T20:55:00.123456Z'
+  },
 ];
 
 export const CURRENT_USER = {

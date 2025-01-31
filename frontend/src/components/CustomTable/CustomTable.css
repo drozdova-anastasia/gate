@@ -1,0 +1,16 @@
+.custom-table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.custom-table__tr {
+  border: 1px solid grey; 
+}
+
+.custom-table__th {
+  padding: 10px 0;
+}
+
+.custom-table__select-th {
+  padding-left: 10px;
+}

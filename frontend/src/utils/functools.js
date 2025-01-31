@@ -40,3 +40,13 @@ export function achain(value, path) {
     (prev, curr) => prev && prev.hasOwnProperty(curr) ? prev[curr] : null, value
   );
 }
+
+export function getValue(item, data) {
+  if (data.calcValue) {
+    return data.calcValue(item);
+  }
+  if (data.formatFunc) {
+    return data.formatFunc(achain(item, data.key));
+  }
+  return achain(item, data.key);
+}

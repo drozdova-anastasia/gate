@@ -1,4 +1,11 @@
-.movies {
+.users {
   padding: 0;
   margin: 0;
+}
+
+.users__actions {
+  margin: 20px 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
 }

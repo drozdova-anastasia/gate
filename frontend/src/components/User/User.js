@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 
 import './User.css';
+import Header from '../Header/Header';
 
 function User ({handleLoadUser}) {
   const [user, setUser] = useState({});
@@ -18,12 +19,10 @@ function User ({handleLoadUser}) {
   }, []);
 
   return (
-    <>
-      <main className='user'>
-        <div>!!!</div>
-        <div>{user.username}</div>
-      </main>
-    </>
+    <main className='user'>
+      <Header/>
+      <div>{user.username}</div>
+    </main>
   );
 }
 
