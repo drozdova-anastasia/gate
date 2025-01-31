@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { KEYS } from './constants';
 import './Users.css';
@@ -14,6 +14,20 @@ function Users ({users}) {
   const [canBlock, setCanBlock] = useState(false);
   const [canUnblock, setCanUnblock] = useState(false);
 
+  useEffect(
+    () => {
+      setCanBlock(
+        selectedList.length > 0
+         && selectedList.every(element => element.isActive === true)
+      );
+      setCanUnblock(
+        selectedList.length > 0
+        && selectedList.every(element => element.isActive === false)
+      );
+    },
+    [selectedList]
+  )
+
   function handleDoubleClick(user) {
     navigate(`${USERS_ROUTE}/${user.id}`);
   }
@@ -27,26 +41,15 @@ function Users ({users}) {
   }
 
   function handleBlock() {
-    setSelectedList([...selectedList]);
     //todo
+    setSelectedList([...selectedList]);
     selectedList.map(element => element.isActive = false);
   }
 
   function handleUnblock() {
-    setSelectedList([...selectedList]);
     //todo
+    setSelectedList([...selectedList]);
     selectedList.forEach(element => element.isActive = true);
-  }
-
-  function handleChangeSelect() {
-    setCanBlock(
-      selectedList.length > 0
-       && selectedList.every(element => element.isActive === true)
-    );
-    setCanUnblock(
-      selectedList.length > 0
-      && selectedList.every(element => element.isActive === false)
-    );
   }
 
   return (
@@ -69,7 +72,6 @@ function Users ({users}) {
       <CustomTable items={users}
                    headers={KEYS}
                    handleDoubleClick={handleDoubleClick}
-                   handleChangeSelect={handleChangeSelect}
                    selectedList={selectedList}
                    setSelectedList={setSelectedList}
                    keys={KEYS}/>

@@ -16,11 +16,11 @@ function Row ({
                   handleChecked={() => handleSelect(item)}/>
       </td>
       {
-        keys.map(
-          (key, index) =><td className='row__td'
-                             key={index + 1}
-                             onClick={() => handleSelect(item)}
-                             onDoubleClick={() => handleDoubleClick(item)}>{getValue(item, key)}</td>
+        keys.map((key, index) =>
+          <td className='row__td'
+              key={index + 1}
+              onClick={() => handleSelect(item)}
+              onDoubleClick={() => handleDoubleClick(item)}>{getValue(item, key)}</td>
         )
       }
     </tr>

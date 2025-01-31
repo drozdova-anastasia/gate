@@ -9,14 +9,12 @@ function CustomTable ({
   keys,
   headers,
   handleDoubleClick,
-  handleChangeSelect,
   setSelectedList,
   selectedList,
 }) {
 
   function handleSelectAll() {
     setSelectedList(selectedList.length > 0 ? [] : [...items]);
-    handleChangeSelect();
   }
 
   function handleSelect(item) {
@@ -27,7 +25,6 @@ function CustomTable ({
     }
     // not rerender without call setSelectedList
     setSelectedList([...selectedList]);
-    handleChangeSelect();
   }
 
   return (
@@ -40,7 +37,12 @@ function CustomTable ({
               <Checkbox checked={selectedList.length > 0}
                         handleChecked={handleSelectAll}/>
             </th>
-            { headers.map((header, index) =><th className='custom-table__th' key={index}>{header.label}</th>) }
+            { 
+              headers.map((header, index) =>
+                <th className='custom-table__th'
+                    key={index}>{header.label}</th>
+              ) 
+            }
           </tr>
         </thead>
         <tbody>
