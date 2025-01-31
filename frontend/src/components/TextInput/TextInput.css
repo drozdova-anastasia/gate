@@ -1,0 +1,19 @@
+.text-input {
+  margin: 0;
+  padding: 0;
+  max-width: calc(25% - 15px);
+  width: 100%;
+}
+
+.text-input__input {
+  margin: 0;
+  padding: 0 7.5px;
+  border: 1px solid grey;
+  width: calc(100% - 14px - 2px);
+  height: 36px;
+}
+
+.text-input__span {
+  margin: 0;
+  padding: 0;
+}

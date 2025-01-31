@@ -6,9 +6,10 @@ import './Users.css';
 import CustomTable from '../CustomTable/CustomTable';
 import Header from '../Header/Header';
 import Button from '../Button/Button';
+import TextInput from '../TextInput/TextInput';
 import { USERS_ROUTE } from '../../utils/constans';
 
-function Users ({users}) {
+function Users ({users, getUsers}) {
   const navigate = useNavigate();
   const [selectedList, setSelectedList] = useState([]);
   const [canBlock, setCanBlock] = useState(false);
@@ -26,6 +27,11 @@ function Users ({users}) {
       );
     },
     [selectedList]
+  )
+
+  useEffect(
+    () => setSelectedList([]),
+    [users]
   )
 
   function handleDoubleClick(user) {
@@ -52,9 +58,18 @@ function Users ({users}) {
     selectedList.forEach(element => element.isActive = true);
   }
 
+  function f(e) {
+    getUsers({search: e.target.value});
+  }
+
   return (
     <main className='users'>
       <Header/>
+      <div className='users__actions'>
+        <TextInput lable='Search'
+                   handleChange={f}
+                   placeholder='FIO|Login|SNILS'/>
+      </div>
       <div className='users__actions'>
         <Button handleOnClick={handleAdd}
                 name='Add'

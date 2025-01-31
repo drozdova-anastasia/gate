@@ -19,9 +19,16 @@ function App() {
     reloadPageData();
   }, []);
 
+  function getUsers(filters) {
+    if (filters.search) {
+      setUsers(USERS.filter(user => user.username === filters.search));
+    }
+    setUsers([...USERS]);
+  }
+
   function reloadPageData() {
     setCurrentUser(CURRENT_USER);
-    setUsers(USERS);
+    getUsers({});
   }
 
   function handleLoadUser(id) {
@@ -35,7 +42,10 @@ function App() {
           <Route path={USER_ROUTE}
                  element={<User handleLoadUser={handleLoadUser}/>}/>
           <Route path={USERS_ROUTE}
-                 element={<Users users={users}/>}/>
+                 element={
+                   <Users users={users}
+                          getUsers={getUsers}/>
+                 }/>
           <Route path='*'
                  element={<NotFound/>}/>
         </Routes>
