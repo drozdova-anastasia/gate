@@ -11,13 +11,13 @@ function Row ({
 }) {
   return (
     <tr className='row'>
-      <td key='0' className='row__td row__select-td'>
+      <td key='0' className='clickable row__td row__select-td'>
         <Checkbox checked={checked}
                   handleChecked={() => handleSelect(item)}/>
       </td>
       {
         keys.map((key, index) =>
-          <td className='row__td'
+          <td className='clickable row__td'
               key={index + 1}
               onClick={() => handleSelect(item)}
               onDoubleClick={() => handleDoubleClick(item)}>{getValue(item, key)}</td>

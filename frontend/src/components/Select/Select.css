@@ -1,0 +1,49 @@
+.select-input {
+  margin: 0;
+  padding: 0;
+  max-width: calc(25% - 15px);
+  width: 100%;
+  position: relative;
+}
+
+.select-input__select {
+  margin: 0;
+  padding: 0;
+  border: 1px solid grey;
+  width: calc(100% - 2px);
+  height: 36px;
+}
+
+.select-input__window {
+  margin: 0;
+  padding: 5px;
+  border: 1px solid grey;
+  width: calc(100% - 10px - 2px);
+  height: 250px;
+  position: absolute;
+  z-index: 100;
+  background: white;
+}
+
+.select-input__input {
+  margin: 0;
+  padding: 0 7.5px;
+  border: 1px solid grey;
+  width: calc(100% - 15px - 2px);
+  height: 36px;
+}
+
+.select-input__wrap {
+  margin: 5px 0 0 0;
+  overflow-y: auto;
+  height: calc(100% - 5px - 38px);
+}
+
+.select-input__items {
+  height: 300px;
+}
+
+.select-input__item {
+  margin: 0;
+  padding: 0;
+}

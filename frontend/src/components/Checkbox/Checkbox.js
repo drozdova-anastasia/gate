@@ -2,7 +2,7 @@ import './Checkbox.css';
 
 function Checkbox ({checked, handleChecked}) {
   return (
-    <label className='checkbox'>
+    <label className='clickable checkbox'>
       <input type='checkbox'
              name='checkbox'
              className='checkbox__input'

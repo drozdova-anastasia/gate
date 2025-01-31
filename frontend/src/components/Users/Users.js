@@ -7,6 +7,7 @@ import CustomTable from '../CustomTable/CustomTable';
 import Header from '../Header/Header';
 import Button from '../Button/Button';
 import TextInput from '../TextInput/TextInput';
+import Select from '../Select/Select';
 import { USERS_ROUTE } from '../../utils/constans';
 
 function Users ({users, getUsers}) {
@@ -69,6 +70,7 @@ function Users ({users, getUsers}) {
         <TextInput lable='Search'
                    handleChange={f}
                    placeholder='FIO|Login|SNILS'/>
+        <Select lable='Organization' choices={[{title: 'main'}, {title: 'main'}, {title: 'main'}]}/>
       </div>
       <div className='users__actions'>
         <Button handleOnClick={handleAdd}

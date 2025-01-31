@@ -2,7 +2,7 @@ import './Button.css';
 
 function Button ({name, handleOnClick, display}) {
   return (
-    display && <button className='btn button'
+    display && <button className='clickable button'
                        onClick={handleOnClick}>{name}</button>
   );
 }

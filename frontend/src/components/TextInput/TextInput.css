@@ -12,8 +12,3 @@
   width: calc(100% - 14px - 2px);
   height: 36px;
 }
-
-.text-input__span {
-  margin: 0;
-  padding: 0;
-}
