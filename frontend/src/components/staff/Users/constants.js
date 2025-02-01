@@ -1,4 +1,4 @@
-import { formatFio, formatDateToSave } from '../../utils/functools';
+import { formatFio, formatDateToSave } from '../../../utils/functools';
 
 const ROLE_TYPES = {
   admin: 'admin1',

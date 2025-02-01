@@ -1,6 +1,6 @@
 import './Row.css';
-import Checkbox from '../Checkbox/Checkbox';
-import { getValue } from '../../utils/functools';
+import Checkbox from '../../forms/Checkbox/Checkbox';
+import { getValue } from '../../../utils/functools';
 
 function Row ({
   item,

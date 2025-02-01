@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router-dom';
 
 import './Header.css';
-import { USERS_ROUTE } from '../../utils/constans';
+import { USERS_ROUTE } from '../../../utils/constans';
 
 function Header () {
   return (

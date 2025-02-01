@@ -53,7 +53,11 @@ export const USERS = [
     roleType: 'admin',
     isActive: true,
     lastLogin: '2025-01-29T20:55:00.123456Z',
-    updated: '2024-01-29T20:55:00.123456Z'
+    updated: '2024-01-29T20:55:00.123456Z',
+    organization: {
+      id: 1,
+      title: 'title'
+    }
   },
   {
     id: 7,
@@ -61,7 +65,11 @@ export const USERS = [
     roleType: 'admin',
     isActive: true,
     lastLogin: '2025-01-29T20:55:00.123456Z',
-    updated: '2024-01-29T20:55:00.123456Z'
+    updated: '2024-01-29T20:55:00.123456Z',
+    organization: {
+      id: 1,
+      title: 'title'
+    }
   },
 ];
 
@@ -69,3 +77,34 @@ export const CURRENT_USER = {
   username: 'name',
   email: 'email@mail.com',
 }
+
+export const ORGANIZATIONS = [
+  {
+    title: 'first',
+    value: 1
+  },
+  {
+    title: 'second',
+    value: 2
+  },
+  {
+    title: 'second',
+    value: 3
+  },
+  {
+    title: 'main',
+    value: 4
+  },
+  {
+    title: 'mainmain',
+    value: 5
+  },
+  {
+    title: 'mainmainmain',
+    value: 6
+  },
+  {
+    title: 'mainmainmainmainmainmainmainmainmain1111111ainmainmainmainmainmainmain1111111',
+    value: 7
+  }
+];

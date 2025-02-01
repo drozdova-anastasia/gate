@@ -4,12 +4,11 @@ import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import { USER_ROUTE, USERS_ROUTE } from '../../utils/constans';
-import { CURRENT_USER, USERS } from '../../utils/mock';
+import { CURRENT_USER, USERS, ORGANIZATIONS } from '../../utils/mock';
 
-//import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import NotFound from '../NotFound/NotFound';
-import User from '../User/User';
-import Users from '../Users/Users';
+import User from '../staff/User/User';
+import Users from '../staff/Users/Users';
 
 function App() {
   const [currentUser, setCurrentUser] = useState({});
@@ -20,10 +19,14 @@ function App() {
   }, []);
 
   function getUsers(filters) {
+    let users = [...USERS];
     if (filters.search) {
-      setUsers(USERS.filter(user => user.username === filters.search));
+      users = users.filter(user => user.username.includes(filters.search));
     }
-    setUsers([...USERS]);
+    if (filters.organization) {
+      users = users.filter(user => user.organization?.id === filters.organization);
+    }
+    setUsers(users);
   }
 
   function reloadPageData() {
@@ -44,7 +47,8 @@ function App() {
           <Route path={USERS_ROUTE}
                  element={
                    <Users users={users}
-                          getUsers={getUsers}/>
+                          getUsers={getUsers}
+                          organizations={ORGANIZATIONS}/>
                  }/>
           <Route path='*'
                  element={<NotFound/>}/>

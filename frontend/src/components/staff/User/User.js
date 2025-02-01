@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 
 import './User.css';
-import Header from '../Header/Header';
+import Header from '../../shared/Header/Header';
 
 function User ({handleLoadUser}) {
   const [user, setUser] = useState({});

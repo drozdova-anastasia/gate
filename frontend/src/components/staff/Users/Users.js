@@ -3,18 +3,19 @@ import { useEffect, useState } from 'react';
 
 import { KEYS } from './constants';
 import './Users.css';
-import CustomTable from '../CustomTable/CustomTable';
-import Header from '../Header/Header';
-import Button from '../Button/Button';
-import TextInput from '../TextInput/TextInput';
-import Select from '../Select/Select';
-import { USERS_ROUTE } from '../../utils/constans';
+import CustomTable from '../../shared/CustomTable/CustomTable';
+import Header from '../../shared/Header/Header';
+import Button from '../../forms/Button/Button';
+import TextInput from '../../forms/TextInput/TextInput';
+import Select from '../../forms/Select/Select';
+import { USERS_ROUTE } from '../../../utils/constans';
 
-function Users ({users, getUsers}) {
+function Users ({users, getUsers, organizations}) {
   const navigate = useNavigate();
   const [selectedList, setSelectedList] = useState([]);
   const [canBlock, setCanBlock] = useState(false);
   const [canUnblock, setCanUnblock] = useState(false);
+  const [form, setForm] = useState({});
 
   useEffect(
     () => {
@@ -35,6 +36,11 @@ function Users ({users, getUsers}) {
     [users]
   )
 
+  useEffect(
+    () => getUsers(form),
+    [form]
+  )
+
   function handleDoubleClick(user) {
     navigate(`${USERS_ROUTE}/${user.id}`);
   }
@@ -43,37 +49,47 @@ function Users ({users, getUsers}) {
     navigate(`${USERS_ROUTE}/${selectedList[0].id}`);
   }
 
-  function handleAdd() {
-    navigate('*');
-  }
-
   function handleBlock() {
-    //todo
     setSelectedList([...selectedList]);
     selectedList.map(element => element.isActive = false);
   }
 
   function handleUnblock() {
-    //todo
     setSelectedList([...selectedList]);
     selectedList.forEach(element => element.isActive = true);
   }
 
-  function f(e) {
-    getUsers({search: e.target.value});
+  function resetForm() {
+    const result = {};
+    Object.keys(form).forEach(item => result[item] = null);
+    updateForm(result);
+  }
+
+  function updateForm(updates) {
+    setForm({...form, ...updates});
   }
 
   return (
     <main className='users'>
       <Header/>
+      <form className=''>
+        <div className='users__actions'>
+          <TextInput lable='Search'
+                     handleChange={(value) => updateForm({search: value})}
+                     placeholder='FIO|Login|SNILS'/>
+          <Select lable='Organization'
+                  choices={organizations}
+                  canClear={true}
+                  handleSelect={(value) => updateForm({organization: value})}/>
+        </div>
+        <div className='users__actions'>
+          <Button handleOnClick={resetForm}
+                  name='Clear filters'
+                  display={true}/>
+        </div>
+      </form>
       <div className='users__actions'>
-        <TextInput lable='Search'
-                   handleChange={f}
-                   placeholder='FIO|Login|SNILS'/>
-        <Select lable='Organization' choices={[{title: 'main'}, {title: 'main'}, {title: 'main'}]}/>
-      </div>
-      <div className='users__actions'>
-        <Button handleOnClick={handleAdd}
+        <Button handleOnClick={() => navigate('*')}
                 name='Add'
                 display={true}/>
         <Button handleOnClick={handleEdit}

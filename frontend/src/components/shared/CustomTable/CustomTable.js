@@ -1,8 +1,8 @@
 import React from 'react';
 
 import './CustomTable.css';
-import Row from '../Row/Row';
-import Checkbox from '../Checkbox/Checkbox';
+import TableRow from '../TableRow/TableRow';
+import Checkbox from '../../forms/Checkbox/Checkbox';
 
 function CustomTable ({
   items,
@@ -48,12 +48,12 @@ function CustomTable ({
         <tbody>
           {
             items.map((item, index) =>
-              <Row key={index}
-                   item={item}
-                   keys={keys}
-                   handleDoubleClick={handleDoubleClick}
-                   handleSelect={handleSelect}
-                   checked={selectedList.includes(item)}/>
+              <TableRow key={index}
+                        item={item}
+                        keys={keys}
+                        handleDoubleClick={handleDoubleClick}
+                        handleSelect={handleSelect}
+                        checked={selectedList.includes(item)}/>
             )
           }
         </tbody>
