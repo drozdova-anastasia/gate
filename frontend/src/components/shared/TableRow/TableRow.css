@@ -1,13 +1,13 @@
-.row {
+.table-row {
   border-bottom: 1px solid grey;
 }
 
-.row__select-td {
+.table-row__select-td {
   width: 24px;
   padding-left: 11px;
 }
 
-.row__td {
+.table-row__td {
   padding-top: 10px;
   padding-bottom: 10px;
   text-align: center;

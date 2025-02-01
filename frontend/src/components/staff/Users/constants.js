@@ -1,5 +1,15 @@
 import { formatFio, formatDateToSave } from '../../../utils/functools';
 
+export const IS_ACTIVE_TYPES = [
+  {
+    title: 'Yes',
+    value: 'true'
+  },
+  {
+    title: 'No',
+    value: 'false'
+  }
+];
 const ROLE_TYPES = {
   admin: 'admin1',
   agent: 'agent1',

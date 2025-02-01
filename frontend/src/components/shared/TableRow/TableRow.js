@@ -1,8 +1,8 @@
-import './Row.css';
+import './TableRow.css';
 import Checkbox from '../../forms/Checkbox/Checkbox';
 import { getValue } from '../../../utils/functools';
 
-function Row ({
+function TableRow ({
   item,
   keys,
   handleDoubleClick,
@@ -10,14 +10,14 @@ function Row ({
   handleSelect,
 }) {
   return (
-    <tr className='row'>
-      <td key='0' className='clickable row__td row__select-td'>
+    <tr className='table-row'>
+      <td key='0' className='clickable table-row__td table-row__select-td'>
         <Checkbox checked={checked}
                   handleChecked={() => handleSelect(item)}/>
       </td>
       {
         keys.map((key, index) =>
-          <td className='clickable row__td'
+          <td className='clickable table-row__td'
               key={index + 1}
               onClick={() => handleSelect(item)}
               onDoubleClick={() => handleDoubleClick(item)}>{getValue(item, key)}</td>
@@ -27,4 +27,4 @@ function Row ({
   );
 }
 
-export default Row;
+export default TableRow;

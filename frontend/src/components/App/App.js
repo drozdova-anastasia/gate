@@ -26,6 +26,9 @@ function App() {
     if (filters.organization) {
       users = users.filter(user => user.organization?.id === filters.organization);
     }
+    if (filters.isActive) {
+      users = users.filter(user => user.isActive === Boolean(filters.isActive));
+    }
     setUsers(users);
   }
 

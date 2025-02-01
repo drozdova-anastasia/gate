@@ -1,0 +1,9 @@
+.clear-button {
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  z-index: 2;
+  right: 21px;
+  color: red;
+  font-weight: 900;
+}

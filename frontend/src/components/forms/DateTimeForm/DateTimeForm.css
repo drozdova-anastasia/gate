@@ -1,4 +1,4 @@
-.select-input {
+.date-time-form {
   margin: 0;
   padding: 0;
   max-width: calc(25% - 15px);
@@ -6,7 +6,7 @@
   position: relative;
 }
 
-.select-input__select {
+.date-time-form__select {
   margin: 0;
   padding: 0 7.5px;
   border: 1px solid grey;
@@ -16,21 +16,14 @@
   align-items: center;
 }
 
-.select-input__title {
+.date-time-form__title {
   margin: 0;
   padding: 0;
   width: calc(100% - 27px);  
   overflow: hidden;
 }
 
-.select-input__placeholder {
-  margin: 0;
-  padding: 0;
-  width: calc(100% - 27px);  
-  color: grey;
-}
-
-.select-input__cancel {
+.date-time-form__cancel {
   margin: 0;
   padding: 0;
   position: absolute;
@@ -39,7 +32,7 @@
   font-weight: 900;
 }
 
-.select-input__arrow {
+.date-time-form__arrow {
   margin: 0;
   padding: 0;
   position: absolute;
@@ -48,45 +41,29 @@
   color: grey;
 }
 
-.select-input__window {
+.date-time-form__window {
   margin: 0;
   padding: 5px;
   border: 1px solid grey;
   width: calc(100% - 10px - 2px);
-  height: 250px;
+  height: 188px;
   position: absolute;
   z-index: 3;
   background: white;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
-.select-input__input {
+.date-time-form__input-label {
+  margin: 0;
+  padding: 0;
+}
+
+.date-time-form__input {
   margin: 0;
   padding: 0 7.5px;
   border: 1px solid grey;
   width: calc(100% - 15px - 2px);
   height: 36px;
-}
-
-.select-input__wrap {
-  margin: 5px 0 0 0;
-  padding: 0;
-  overflow-y: auto;
-  height: calc(100% - 5px - 38px);
-}
-
-.select-input__items {
-  margin: 0;
-  padding: 0;
-  width: 100%;
-}
-
-.select-input__item {
-  margin: 0;
-  padding: 5px;
-  width: calc(100% - 10px);
-  overflow-wrap: break-word;
-}
-
-.select-input__item:hover {
-  background-color: lightblue;
 }

@@ -1,9 +1,9 @@
 import './TextInput.css';
 
-function TextInput ({lable, handleChange, placeholder}) {
+function TextInput ({label, handleChange, placeholder}) {
 
   return (
-    <label className='text-input'>{lable}
+    <label className='text-input'>{label}
       <input type='text'
              className='text-input__input'
              placeholder={placeholder}

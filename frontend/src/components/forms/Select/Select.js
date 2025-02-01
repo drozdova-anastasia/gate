@@ -1,11 +1,33 @@
-import { useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 
 import './Select.css';
 
-function Select ({lable, choices, canClear, handleSelect}) {
+function Select ({
+  label,
+  choices,
+  canClear,
+  handleSelect,
+  placeholder
+}) {
   const [items, setItems] = useState(choices);
   const [title, setTitle] = useState('');
   const [show, setShow] = useState(false);
+  const ref = useRef();
+
+  useEffect(() => {
+
+    function handleClose(event) {
+      if (ref.current.contains(event.target)) return;
+      setShow(false);
+    }
+
+    window.addEventListener('click', handleClose, {capture: true});
+    return () => window.removeEventListener(
+      'click',
+      handleClose,
+      {capture: true}
+    );
+  }, []);
 
   function handleChange(event) {
     const value = event.target.value;
@@ -29,14 +51,22 @@ function Select ({lable, choices, canClear, handleSelect}) {
   }
 
   return (
-    <label className='select-input'>{lable}
+    <label ref={ref}
+           className='select-input'>{label}
       <div className='clickable select-input__select'
            onClick={() => setShow(!show)}>
-        <div className='select-input__select-text'>{title}</div>
+        {
+          title
+          && <div className='select-input__title'>{title}</div>
+        }
+        {
+          !title
+          && <div className='select-input__placeholder'>{placeholder}</div>
+        }
         {
           (canClear && title)
           && <span className='select-input__cancel'
-                   onClick={handleCancel}>×</span>
+                   onClick={handleCancel}>✕</span>
         }
         <span className='select-input__arrow'>▾</span>
       </div>

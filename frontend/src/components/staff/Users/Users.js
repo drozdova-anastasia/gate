@@ -1,13 +1,16 @@
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
-import { KEYS } from './constants';
+import { IS_ACTIVE_TYPES, KEYS } from './constants';
 import './Users.css';
 import CustomTable from '../../shared/CustomTable/CustomTable';
 import Header from '../../shared/Header/Header';
 import Button from '../../forms/Button/Button';
+import ClearButton from '../../forms/ClearButton/ClearButton';
+import Row from '../../forms/Row/Row';
 import TextInput from '../../forms/TextInput/TextInput';
 import Select from '../../forms/Select/Select';
+import DateTimeForm from '../../forms/DateTimeForm/DateTimeForm';
 import { USERS_ROUTE } from '../../../utils/constans';
 
 function Users ({users, getUsers, organizations}) {
@@ -72,23 +75,35 @@ function Users ({users, getUsers, organizations}) {
   return (
     <main className='users'>
       <Header/>
-      <form className=''>
-        <div className='users__actions'>
-          <TextInput lable='Search'
-                     handleChange={(value) => updateForm({search: value})}
-                     placeholder='FIO|Login|SNILS'/>
-          <Select lable='Organization'
-                  choices={organizations}
-                  canClear={true}
-                  handleSelect={(value) => updateForm({organization: value})}/>
-        </div>
-        <div className='users__actions'>
-          <Button handleOnClick={resetForm}
-                  name='Clear filters'
-                  display={true}/>
-        </div>
-      </form>
-      <div className='users__actions'>
+      <Row>
+        <TextInput label='Search'
+                    handleChange={(value) => updateForm({search: value})}
+                    placeholder='FIO|Login|SNILS'/>
+        <Select label='Organization'
+                choices={organizations}
+                canClear={true}
+                handleSelect={(value) => updateForm({organization: value})}/>
+        <DateTimeForm label='Last login'/>
+        <DateTimeForm label='Updated'/>
+      </Row>
+      <Row>
+        <Select choices={IS_ACTIVE_TYPES}
+                canClear={true}
+                placeholder='Is active'
+                handleSelect={(value) => updateForm({isActive: value})}/>
+        <Select choices={organizations}
+                canClear={true}
+                placeholder='Services'
+                handleSelect={(value) => updateForm({organization: value})}/>
+        <Select choices={organizations}
+                canClear={true}
+                placeholder='Permissions'
+                handleSelect={(value) => updateForm({organization: value})}/>
+        <ClearButton handleOnClick={resetForm}
+                     name='Clear filters'
+                     display={true}/>
+      </Row>
+      <Row>
         <Button handleOnClick={() => navigate('*')}
                 name='Add'
                 display={true}/>
@@ -101,7 +116,7 @@ function Users ({users, getUsers, organizations}) {
         <Button handleOnClick={handleUnblock}
                 name='Unblock'
                 display={canUnblock}/>
-      </div>
+      </Row>
       <CustomTable items={users}
                    headers={KEYS}
                    handleDoubleClick={handleDoubleClick}

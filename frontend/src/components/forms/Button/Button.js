@@ -1,9 +1,13 @@
 import './Button.css';
 
-function Button ({name, handleOnClick, display}) {
+function Button ({name, handleOnClick, display, children}) {
   return (
-    display && <button className='clickable button'
-                       onClick={handleOnClick}>{name}</button>
+    display
+    && <label className='button'>
+         <button className='clickable button__key'
+                 onClick={handleOnClick}>{name}</button>
+         {children}
+       </label>
   );
 }
 
