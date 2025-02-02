@@ -7,7 +7,8 @@ function Select ({
   choices,
   canClear,
   handleSelect,
-  placeholder
+  placeholder,
+  size
 }) {
   const [items, setItems] = useState(choices);
   const [title, setTitle] = useState('');
@@ -17,8 +18,9 @@ function Select ({
   useEffect(() => {
 
     function handleClose(event) {
-      if (ref.current.contains(event.target)) return;
-      setShow(false);
+      if (!ref.current.contains(event.target)) {
+        setShow(false);
+      }
     }
 
     window.addEventListener('click', handleClose, {capture: true});
@@ -52,7 +54,7 @@ function Select ({
 
   return (
     <label ref={ref}
-           className='select-input'>{label}
+           className={`select-input${size ? ` ${size}` : ''}`}>{label}
       <div className='clickable select-input__select'
            onClick={() => setShow(!show)}>
         {

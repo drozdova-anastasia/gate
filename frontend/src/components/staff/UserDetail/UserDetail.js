@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 
-import './User.css';
+import './UserDetail.css';
 import Header from '../../shared/Header/Header';
 
-function User ({handleLoadUser}) {
+function UserDetail ({handleLoadUser}) {
   const [user, setUser] = useState({});
   const params = useParams();
   const navigate = useNavigate();
@@ -26,4 +26,4 @@ function User ({handleLoadUser}) {
   );
 }
 
-export default User;
+export default UserDetail;

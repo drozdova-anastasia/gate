@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
 import { IS_ACTIVE_TYPES, KEYS } from './constants';
-import './Users.css';
+import './UserList.css';
 import CustomTable from '../../shared/CustomTable/CustomTable';
 import Header from '../../shared/Header/Header';
 import Button from '../../forms/Button/Button';
@@ -11,9 +11,10 @@ import Row from '../../forms/Row/Row';
 import TextInput from '../../forms/TextInput/TextInput';
 import Select from '../../forms/Select/Select';
 import DateTimeForm from '../../forms/DateTimeForm/DateTimeForm';
-import { USERS_ROUTE } from '../../../utils/constans';
+import { USER_LIST_ROUTE, USER_CREATE_ROUTE } from '../../../utils/urls';
+import { COL_3 } from '../../../utils/sizes';
 
-function Users ({users, getUsers, organizations}) {
+function UserList ({users, getUsers, organizations}) {
   const navigate = useNavigate();
   const [selectedList, setSelectedList] = useState([]);
   const [canBlock, setCanBlock] = useState(false);
@@ -45,11 +46,11 @@ function Users ({users, getUsers, organizations}) {
   )
 
   function handleDoubleClick(user) {
-    navigate(`${USERS_ROUTE}/${user.id}`);
+    navigate(`${USER_LIST_ROUTE}/${user.id}`);
   }
 
   function handleEdit() {
-    navigate(`${USERS_ROUTE}/${selectedList[0].id}`);
+    navigate(`${USER_LIST_ROUTE}/${selectedList[0].id}`);
   }
 
   function handleBlock() {
@@ -77,43 +78,55 @@ function Users ({users, getUsers, organizations}) {
       <Header/>
       <Row>
         <TextInput label='Search'
-                    handleChange={(value) => updateForm({search: value})}
-                    placeholder='FIO|Login|SNILS'/>
+                   size={COL_3}
+                   handleChange={(value) => updateForm({search: value})}
+                   placeholder='FIO|Login|SNILS'/>
         <Select label='Organization'
+                size={COL_3}
                 choices={organizations}
                 canClear={true}
                 handleSelect={(value) => updateForm({organization: value})}/>
-        <DateTimeForm label='Last login'/>
-        <DateTimeForm label='Updated'/>
+        <DateTimeForm size={COL_3}
+                      label='Last login'/>
+        <DateTimeForm size={COL_3}
+                      label='Updated'/>
       </Row>
       <Row>
         <Select choices={IS_ACTIVE_TYPES}
+                size={COL_3}
                 canClear={true}
                 placeholder='Is active'
                 handleSelect={(value) => updateForm({isActive: value})}/>
         <Select choices={organizations}
+                size={COL_3}
                 canClear={true}
                 placeholder='Services'
                 handleSelect={(value) => updateForm({organization: value})}/>
         <Select choices={organizations}
+                size={COL_3}
                 canClear={true}
                 placeholder='Permissions'
                 handleSelect={(value) => updateForm({organization: value})}/>
-        <ClearButton handleOnClick={resetForm}
+        <ClearButton size={COL_3}
+                     handleOnClick={resetForm}
                      name='Clear filters'
                      display={true}/>
       </Row>
       <Row>
-        <Button handleOnClick={() => navigate('*')}
+        <Button size={COL_3}
+                handleOnClick={() => navigate(USER_CREATE_ROUTE)}
                 name='Add'
                 display={true}/>
-        <Button handleOnClick={handleEdit}
+        <Button size={COL_3}
+                handleOnClick={handleEdit}
                 name='Edit'
                 display={selectedList.length === 1}/>
-        <Button handleOnClick={handleBlock}
+        <Button size={COL_3}
+                handleOnClick={handleBlock}
                 name='Block'
                 display={canBlock}/>
-        <Button handleOnClick={handleUnblock}
+        <Button size={COL_3}
+                handleOnClick={handleUnblock}
                 name='Unblock'
                 display={canUnblock}/>
       </Row>
@@ -127,4 +140,4 @@ function Users ({users, getUsers, organizations}) {
   );
 }
 
-export default Users;
+export default UserList;

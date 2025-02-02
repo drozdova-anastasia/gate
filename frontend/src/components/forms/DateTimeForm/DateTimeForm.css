@@ -1,7 +1,6 @@
 .date-time-form {
   margin: 0;
   padding: 0;
-  max-width: calc(25% - 15px);
   width: 100%;
   position: relative;
 }
@@ -55,15 +54,9 @@
   gap: 20px;
 }
 
-.date-time-form__input-label {
+.date-time-form__input-row {
   margin: 0;
   padding: 0;
-}
-
-.date-time-form__input {
-  margin: 0;
-  padding: 0 7.5px;
-  border: 1px solid grey;
-  width: calc(100% - 15px - 2px);
-  height: 36px;
+  display: flex;
+  gap: 20px;
 }

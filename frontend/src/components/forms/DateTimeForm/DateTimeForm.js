@@ -2,8 +2,10 @@ import { useEffect, useState, useRef } from 'react';
 
 import './DateTimeForm.css';
 import Button from '../Button/Button';
+import TextInput from '../TextInput/TextInput';
+import { COL_6, COL_12 } from '../../../utils/sizes';
 
-function DateTimeForm ({label, canClear, handleSelect}) {
+function DateTimeForm ({label, canClear, handleSelect, size}) {
   const [title, setTitle] = useState('');
   const [show, setShow] = useState(false);
   const ref = useRef();
@@ -11,8 +13,9 @@ function DateTimeForm ({label, canClear, handleSelect}) {
   useEffect(() => {
 
     function handleClose(event) {
-      if (ref.current.contains(event.target)) return;
-      setShow(false);
+      if (!ref.current.contains(event.target)) {
+        setShow(false);
+      }
     }
 
     window.addEventListener('click', handleClose, {capture: true});
@@ -30,7 +33,7 @@ function DateTimeForm ({label, canClear, handleSelect}) {
   }
 
   return (
-    <label className='date-time-form'
+    <label className={`date-time-form${size ? ` ${size}` : ''}`}
            ref={ref}>{label}
       <div className='clickable date-time-form__select'
            onClick={() => setShow(!show)}>
@@ -48,17 +51,24 @@ function DateTimeForm ({label, canClear, handleSelect}) {
       {
         show
         && <div className='date-time-form__window'>
-          <label className='date-time-form__input-label'>Date and time, from
-            <input type='text'
-                  className='date-time-form__input'
-                  placeholder='HH:mm:ss'/>
-          </label>
-          <label className='date-time-form__input-label'>Date and time, to
-            <input type='text'
-                  className='date-time-form__input'
-                  placeholder='HH:mm:ss'/>
-          </label>
-          <Button display={true}
+          <div className='date-time-form__input-row'>
+            <TextInput label='Date and time, from' handleChange={() => {}}
+                       size={COL_6}
+                       placeholder='DD.MM.YYYY'/>
+            <TextInput label='\n' handleChange={() => {}}
+                       size={COL_6}
+                       placeholder='HH:mm:ss'/>
+          </div>
+          <div className='date-time-form__input-row'>
+            <TextInput label='Date and time, to' handleChange={() => {}}
+                       size={COL_6}
+                       placeholder='DD.MM.YYYY'/>
+            <TextInput label='\n' handleChange={() => {}}
+                       size={COL_6}
+                       placeholder='HH:mm:ss'/>
+          </div>
+          <Button size={COL_12}
+                  display={true}
                   name='Confirm'></Button>
         </div>
       }

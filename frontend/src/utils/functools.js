@@ -10,7 +10,7 @@ export function formatFio(value, full) {
     value.middleName
   ].map((item, index) => {
     if (!item) {
-      return;
+      return item;
     }
     return full || index === 0 ? item : `${item.substr(0, 1)}.`;
   }).filter(item => item).join(' ');

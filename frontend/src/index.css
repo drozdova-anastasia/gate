@@ -4,3 +4,15 @@
 .clickable {
   cursor: pointer;
 }
+
+.col-3 {
+  max-width: calc(25% - 15px);
+}
+
+.col-6 {
+  max-width: calc(50% - 10px);
+}
+
+.col-12 {
+  max-width: 100%;
+}

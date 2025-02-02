@@ -3,12 +3,17 @@ import { Route, Routes } from 'react-router-dom';
 
 import './App.css';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
-import { USER_ROUTE, USERS_ROUTE } from '../../utils/constans';
+import {
+  USER_DETAIL_ROUTE,
+  USER_LIST_ROUTE,
+  USER_CREATE_ROUTE
+} from '../../utils/urls';
 import { CURRENT_USER, USERS, ORGANIZATIONS } from '../../utils/mock';
 
 import NotFound from '../NotFound/NotFound';
-import User from '../staff/User/User';
-import Users from '../staff/Users/Users';
+import UserDetail from '../staff/UserDetail/UserDetail';
+import UserList from '../staff/UserList/UserList';
+import UserCreate from '../staff/UserCreate/UserCreate';
 
 function App() {
   const [currentUser, setCurrentUser] = useState({});
@@ -45,13 +50,15 @@ function App() {
     <CurrentUserContext.Provider value={currentUser}>
       <div className='page__container'>
         <Routes>
-          <Route path={USER_ROUTE}
-                 element={<User handleLoadUser={handleLoadUser}/>}/>
-          <Route path={USERS_ROUTE}
+          <Route path={USER_DETAIL_ROUTE}
+                 element={<UserDetail handleLoadUser={handleLoadUser}/>}/>
+          <Route path={USER_CREATE_ROUTE}
+                 element={<UserCreate/>}/>
+          <Route path={USER_LIST_ROUTE}
                  element={
-                   <Users users={users}
-                          getUsers={getUsers}
-                          organizations={ORGANIZATIONS}/>
+                   <UserList users={users}
+                             getUsers={getUsers}
+                             organizations={ORGANIZATIONS}/>
                  }/>
           <Route path='*'
                  element={<NotFound/>}/>
