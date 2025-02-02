@@ -8,6 +8,10 @@
   color: white;
 }
 
+.text-input_ellipsis {
+  text-overflow: ellipsis;
+}
+
 .text-input__input {
   margin: 0;
   padding: 0 7.5px;

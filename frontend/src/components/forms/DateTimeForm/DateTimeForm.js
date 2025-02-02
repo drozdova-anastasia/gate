@@ -55,6 +55,7 @@ function DateTimeForm ({label, canClear, handleSelect, size}) {
             <TextInputForm label='Date and time, from'
                            handleChange={() => {}}
                            size={COL_6}
+                           ellipsis={true}
                            placeholder='DD.MM.YYYY'/>
             <TextInputForm label={EMPTY}
                            handleChange={() => {}}
@@ -65,6 +66,7 @@ function DateTimeForm ({label, canClear, handleSelect, size}) {
             <TextInputForm label='Date and time, to'
                            handleChange={() => {}}
                            size={COL_6}
+                           ellipsis={true}
                            placeholder='DD.MM.YYYY'/>
             <TextInputForm label={EMPTY}
                            handleChange={() => {}}
@@ -72,7 +74,6 @@ function DateTimeForm ({label, canClear, handleSelect, size}) {
                            placeholder='HH:mm:ss'/>
           </div>
           <Button size={COL_12}
-                  display={true}
                   name='Confirm'></Button>
         </div>
       }

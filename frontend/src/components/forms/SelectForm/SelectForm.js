@@ -9,12 +9,14 @@ function SelectForm ({
   canClear,
   handleSelect,
   placeholder,
-  size
+  size,
+  name,
+  value
 }) {
   const [items, setItems] = useState(choices);
-  const [title, setTitle] = useState('');
   const [show, setShow] = useState(false);
   const ref = useRef();
+  const inputRef = useRef();
 
   useEffect(() => {
 
@@ -32,7 +34,8 @@ function SelectForm ({
     );
   }, []);
 
-  function handleChange(value) {
+  function handleChange(event) {
+    const value = event.target.value;
     setItems(
       !value
       ? choices
@@ -41,37 +44,33 @@ function SelectForm ({
   }
 
   function handleSelectItem(item) {
-    setTitle(item.title);
     setShow(false);
     handleSelect(item.value);
   }
 
   function handleCancel(event) {
     event.stopPropagation();
-    setTitle('');
-    handleSelect(null);
+    handleSelect('');
   }
 
   return (
-    <label ref={ref}
-           className={`select-input${size ? ` ${size}` : ''}`}>{label}
-      <div className='clickable select-input__select'
-           onClick={() => setShow(!show)}>
+    <div className={`select-input${size ? ` ${size}` : ''}`}
+         ref={ref}>
+      <label className='clickable select-input__label'
+             onClick={() => setShow(!show)}>{label}
+        <input ref={inputRef}
+               className='clickable select-input__input'
+               placeholder={placeholder}
+               readOnly onChange={handleSelect}
+               name={name}
+               value={value}/>
         {
-          title
-          && <div className='select-input__title'>{title}</div>
-        }
-        {
-          !title
-          && <div className='select-input__placeholder'>{placeholder}</div>
-        }
-        {
-          (canClear && title)
+          (canClear && inputRef.current?.defaultValue)
           && <span className='select-input__cancel'
                    onClick={handleCancel}>✕</span>
         }
         <span className='select-input__arrow'>▾</span>
-      </div>
+      </label>
       {
         show
         && <div className='select-input__window'>
@@ -90,7 +89,7 @@ function SelectForm ({
           </div>
         </div>
       }
-    </label>
+    </div>
   );
 }
 

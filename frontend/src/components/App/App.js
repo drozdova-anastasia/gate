@@ -8,7 +8,8 @@ import {
   USER_LIST_ROUTE,
   USER_CREATE_ROUTE
 } from '../../utils/urls';
-import { CURRENT_USER, USERS, ORGANIZATIONS } from '../../utils/mock';
+import { USERS, ORGANIZATIONS } from '../../utils/mock';
+import api from '../../utils/Api';
 
 import NotFound from '../NotFound/NotFound';
 import UserDetail from '../staff/UserDetail/UserDetail';
@@ -17,13 +18,14 @@ import UserCreate from '../staff/UserCreate/UserCreate';
 
 function App() {
   const [currentUser, setCurrentUser] = useState({});
-  const [users, setUsers] = useState([]);
+  const [userList, setUserList] = useState([]);
+  const [organizationList, setOrganizationList] = useState(ORGANIZATIONS);
 
   useEffect(() => {
     reloadPageData();
   }, []);
 
-  function getUsers(filters) {
+  function getUserList(filters) {
     let users = [...USERS];
     if (filters.search) {
       users = users.filter(user => user.username.includes(filters.search));
@@ -34,12 +36,21 @@ function App() {
     if (filters.isActive) {
       users = users.filter(user => user.isActive === Boolean(filters.isActive));
     }
-    setUsers(users);
+    setUserList(users);
   }
 
   function reloadPageData() {
-    setCurrentUser(CURRENT_USER);
-    getUsers({});
+    //return Promise.all([
+    //  api.getUserCurrent(),
+    //  api.getUserList({}),
+    //  api.getOrganizationList(),
+    //]).then(([user, userList, organizationList]) => {
+    //  setCurrentUser(user);
+    //  setUserList(userList);
+    //  setOrganizationList(organizationList);
+    //});
+    setCurrentUser(USERS);
+    getUserList({});
   }
 
   function handleLoadUser(id) {
@@ -56,9 +67,9 @@ function App() {
                  element={<UserCreate/>}/>
           <Route path={USER_LIST_ROUTE}
                  element={
-                   <UserList users={users}
-                             getUsers={getUsers}
-                             organizations={ORGANIZATIONS}/>
+                   <UserList userList={userList}
+                             getUserList={getUserList}
+                             organizations={organizationList}/>
                  }/>
           <Route path='*'
                  element={<NotFound/>}/>
@@ -69,4 +80,3 @@ function App() {
 }
 
 export default App;
-

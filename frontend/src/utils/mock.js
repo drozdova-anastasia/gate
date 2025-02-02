@@ -73,11 +73,6 @@ export const USERS = [
   },
 ];
 
-export const CURRENT_USER = {
-  username: 'name',
-  email: 'email@mail.com',
-}
-
 export const ORGANIZATIONS = [
   {
     title: 'first',

@@ -5,28 +5,22 @@
   position: relative;
 }
 
-.select-input__select {
+.select-input__label {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+.select-input__input {
   margin: 0;
   padding: 0 7.5px;
   border: 1px solid grey;
   width: calc(100% - 15px - 2px);
   height: 36px;
-  display: flex;
-  align-items: center;
 }
 
-.select-input__title {
-  margin: 0;
-  padding: 0;
-  width: calc(100% - 27px);  
-  overflow: hidden;
-}
-
-.select-input__placeholder {
-  margin: 0;
-  padding: 0;
-  width: calc(100% - 27px);  
-  color: grey;
+.select-input__input:focus {
+  outline: none;
 }
 
 .select-input__cancel {
@@ -35,6 +29,7 @@
   position: absolute;
   z-index: 2;
   right: 21px;
+  bottom: 9px;
   font-weight: 900;
 }
 
@@ -44,6 +39,7 @@
   position: absolute;
   z-index: 2;
   right: 7.5px;
+  bottom: 10px;
   color: grey;
 }
 
@@ -56,14 +52,6 @@
   position: absolute;
   z-index: 3;
   background: white;
-}
-
-.select-input__input {
-  margin: 0;
-  padding: 0 7.5px;
-  border: 1px solid grey;
-  width: calc(100% - 15px - 2px);
-  height: 36px;
 }
 
 .select-input__wrap {
