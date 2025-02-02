@@ -2,7 +2,7 @@ import React from 'react';
 
 import './CustomTable.css';
 import TableRow from '../TableRow/TableRow';
-import Checkbox from '../../forms/Checkbox/Checkbox';
+import CheckboxForm from '../../forms/CheckboxForm/CheckboxForm';
 
 function CustomTable ({
   items,
@@ -34,8 +34,8 @@ function CustomTable ({
         <thead className='custom-table__thead'>
           <tr className='custom-table__tr '>
             <th className='custom-table__th custom-table__select-th'>
-              <Checkbox checked={selectedList.length > 0}
-                        handleChecked={handleSelectAll}/>
+              <CheckboxForm checked={selectedList.length > 0}
+                            handleChecked={handleSelectAll}/>
             </th>
             { 
               headers.map((header, index) =>

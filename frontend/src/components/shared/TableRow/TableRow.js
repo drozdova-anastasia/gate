@@ -1,5 +1,5 @@
 import './TableRow.css';
-import Checkbox from '../../forms/Checkbox/Checkbox';
+import CheckboxForm from '../../forms/CheckboxForm/CheckboxForm';
 import { getValue } from '../../../utils/functools';
 
 function TableRow ({
@@ -12,8 +12,8 @@ function TableRow ({
   return (
     <tr className='table-row'>
       <td key='0' className='clickable table-row__td table-row__select-td'>
-        <Checkbox checked={checked}
-                  handleChecked={() => handleSelect(item)}/>
+        <CheckboxForm checked={checked}
+                      handleChecked={() => handleSelect(item)}/>
       </td>
       {
         keys.map((key, index) =>

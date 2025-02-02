@@ -1,8 +1,9 @@
 import { useEffect, useState, useRef } from 'react';
 
-import './Select.css';
+import './SelectForm.css';
+import TextInputForm from '../TextInputForm/TextInputForm';
 
-function Select ({
+function SelectForm ({
   label,
   choices,
   canClear,
@@ -31,8 +32,7 @@ function Select ({
     );
   }, []);
 
-  function handleChange(event) {
-    const value = event.target.value;
+  function handleChange(value) {
     setItems(
       !value
       ? choices
@@ -75,10 +75,8 @@ function Select ({
       {
         show
         && <div className='select-input__window'>
-          <input type='text'
-                 className='select-input__input'
-                 placeholder='Search...'
-                 onChange={handleChange}/>
+          <TextInputForm placeholder='Search...'
+                         handleChange={handleChange}/>
           <div className='select-input__wrap'>
             <div className='select-input__items'>
               {
@@ -96,4 +94,4 @@ function Select ({
   );
 }
 
-export default Select;
+export default SelectForm;

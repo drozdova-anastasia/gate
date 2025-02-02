@@ -2,8 +2,8 @@ import { useEffect, useState, useRef } from 'react';
 
 import './DateTimeForm.css';
 import Button from '../Button/Button';
-import TextInput from '../TextInput/TextInput';
-import { COL_6, COL_12 } from '../../../utils/sizes';
+import TextInputForm from '../TextInputForm/TextInputForm';
+import { COL_6, COL_12, EMPTY } from '../../../utils/css';
 
 function DateTimeForm ({label, canClear, handleSelect, size}) {
   const [title, setTitle] = useState('');
@@ -52,20 +52,24 @@ function DateTimeForm ({label, canClear, handleSelect, size}) {
         show
         && <div className='date-time-form__window'>
           <div className='date-time-form__input-row'>
-            <TextInput label='Date and time, from' handleChange={() => {}}
-                       size={COL_6}
-                       placeholder='DD.MM.YYYY'/>
-            <TextInput label='\n' handleChange={() => {}}
-                       size={COL_6}
-                       placeholder='HH:mm:ss'/>
+            <TextInputForm label='Date and time, from'
+                           handleChange={() => {}}
+                           size={COL_6}
+                           placeholder='DD.MM.YYYY'/>
+            <TextInputForm label={EMPTY}
+                           handleChange={() => {}}
+                           size={COL_6}
+                           placeholder='HH:mm:ss'/>
           </div>
           <div className='date-time-form__input-row'>
-            <TextInput label='Date and time, to' handleChange={() => {}}
-                       size={COL_6}
-                       placeholder='DD.MM.YYYY'/>
-            <TextInput label='\n' handleChange={() => {}}
-                       size={COL_6}
-                       placeholder='HH:mm:ss'/>
+            <TextInputForm label='Date and time, to'
+                           handleChange={() => {}}
+                           size={COL_6}
+                           placeholder='DD.MM.YYYY'/>
+            <TextInputForm label={EMPTY}
+                           handleChange={() => {}}
+                           size={COL_6}
+                           placeholder='HH:mm:ss'/>
           </div>
           <Button size={COL_12}
                   display={true}

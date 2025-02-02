@@ -4,10 +4,19 @@
   width: 100%;
 }
 
+.text-input_white-text {
+  color: white;
+}
+
 .text-input__input {
   margin: 0;
   padding: 0 7.5px;
   border: 1px solid grey;
   width: calc(100% - 14px - 2px);
   height: 36px;
+}
+
+.text-input__input:focus {
+  outline: none;
+  border: 1px solid lightblue;
 }

@@ -1,6 +1,6 @@
-import './Checkbox.css';
+import './CheckboxForm.css';
 
-function Checkbox ({checked, handleChecked}) {
+function CheckboxForm ({checked, handleChecked}) {
   return (
     <label className='clickable checkbox'>
       <input type='checkbox'
@@ -13,4 +13,4 @@ function Checkbox ({checked, handleChecked}) {
   );
 }
 
-export default Checkbox;
+export default CheckboxForm;
