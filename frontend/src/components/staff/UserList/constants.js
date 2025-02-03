@@ -1,5 +1,7 @@
 import { formatFio, formatDateToSave } from '../../../utils/functools';
 
+export const DATETIME_FORMAT = 'DD.MM.YYYY в HH:mm:ss';
+
 export const IS_ACTIVE_TYPES = [
   {
     title: 'Yes',
@@ -39,7 +41,7 @@ export const KEYS = [
   {
     label: 'lastLogin',
     key: 'lastLogin',
-    formatFunc: item => formatDateToSave(item, 'DD.MM.YYYY в HH:mm:ss')
+    formatFunc: item => formatDateToSave(item, DATETIME_FORMAT)
   },
   {
     label: 'isActive',
@@ -53,6 +55,6 @@ export const KEYS = [
   {
     label: 'updated',
     key: 'updated',
-    formatFunc: item => formatDateToSave(item, 'DD.MM.YYYY в HH:mm:ss')
+    formatFunc: item => formatDateToSave(item, DATETIME_FORMAT)
   }
 ];

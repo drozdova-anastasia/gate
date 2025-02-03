@@ -1,9 +1,11 @@
 import { useEffect, useState, useRef } from 'react';
 
 import './DateTimeForm.css';
+import { COL_6, COL_12, EMPTY } from '../../../constants/css';
+
 import Button from '../Button/Button';
 import TextInputForm from '../TextInputForm/TextInputForm';
-import { COL_6, COL_12, EMPTY } from '../../../constants/css';
+import FormCalendar from '../FormCalendar/FormCalendar';
 
 function DateTimeForm ({label, canClear, handleSelect, size}) {
   const [title, setTitle] = useState('');
@@ -55,6 +57,7 @@ function DateTimeForm ({label, canClear, handleSelect, size}) {
             <input type='date' className='date-time-form__date'/>
           </div>
           <div className='date-time-form__input-row'>
+            <FormCalendar/>
             <TextInputForm label='Date and time, to'
                            handleChange={() => {}}
                            size={COL_6}

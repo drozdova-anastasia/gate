@@ -50,3 +50,7 @@ export function getValue(item, data) {
   }
   return achain(item, data.key);
 }
+
+export function numberRange(start, end) {
+  return new Array(end - start).fill().map((_, i) => i + start);
+}
