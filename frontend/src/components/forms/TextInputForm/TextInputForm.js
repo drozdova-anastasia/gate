@@ -1,6 +1,6 @@
 import './TextInputForm.css';
 
-import { EMPTY } from '../../../utils/css';
+import { EMPTY } from '../../../constants/css';
 
 function TextInputForm ({
   label,

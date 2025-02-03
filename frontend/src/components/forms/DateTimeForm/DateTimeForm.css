@@ -60,3 +60,11 @@
   display: flex;
   gap: 20px;
 }
+
+.date-time-form__date {
+  background: transparent;
+  padding: 5px;
+  ::-webkit-datetime-edit {
+    padding: 5px;
+}
+}

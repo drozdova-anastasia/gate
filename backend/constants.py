@@ -48,7 +48,7 @@ USERS = [
     'updated': '2024-01-29T20:55:00.123456Z'
   },
   {
-    id: 6,
+    'id': 6,
     'username': 'admin',
     'roleType': 'admin',
     'isActive': True,
@@ -60,7 +60,7 @@ USERS = [
     }
   },
   {
-    id: 7,
+    'id': 7,
     'username': 'admin',
     'roleType': 'admin',
     'isActive': False,
@@ -70,7 +70,7 @@ USERS = [
       'id': 1,
       'title': 'title'
     }
-  },
+  }
 ]
 ORGANIZATIONS = [
     {

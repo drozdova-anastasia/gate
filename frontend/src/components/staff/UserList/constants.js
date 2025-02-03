@@ -10,11 +10,18 @@ export const IS_ACTIVE_TYPES = [
     value: 'false'
   }
 ];
+
+export const IS_ACTIVE_TYPES_ = {
+  true: 'Yes',
+  false: 'No',
+};
+
 const ROLE_TYPES = {
   admin: 'admin1',
   agent: 'agent1',
   personal: 'personal1',
 };
+
 export const KEYS = [
   {
     label: 'username',

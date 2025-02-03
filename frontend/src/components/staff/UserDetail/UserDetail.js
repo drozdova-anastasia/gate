@@ -1,27 +1,26 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 
 import './UserDetail.css';
 import Header from '../../shared/Header/Header';
 
-function UserDetail ({handleLoadUser}) {
-  const [user, setUser] = useState({});
+function UserDetail ({handleLoadUser, userDetail}) {
   const params = useParams();
   const navigate = useNavigate();
 
   useEffect(() => {
-    const user = handleLoadUser(parseInt(params.id));
-    if (user) {
-        setUser(user);
-    } else {
-        navigate('/');
-    }
+    handleLoadUser(parseInt(params.id));
+    //if (user) {
+    //    setUser(user);
+    //} else {
+    //    navigate('/');
+    //}
   }, []);
 
   return (
     <main className='user'>
       <Header/>
-      <div>{user.username}</div>
+      <div>{userDetail.username}</div>
     </main>
   );
 }

@@ -1,16 +1,17 @@
-import { DEFAULT_BASE_URL } from './constans.js';
-import { GET, POST } from './method.js';
+import { DEFAULT_BASE_URL } from '../constants/base.js';
+import { GET, POST, PUT } from '../constants/method.js';
 
 export class Api {
 
   constructor({ baseUrl }) {
     this._baseUrl = baseUrl;
   }
-  
-  _sendRequest(
+
+  async _sendRequest(
     url,
     method,
     body = null,
+    params = null
   ) {
     const data = {
       method: method,
@@ -20,40 +21,54 @@ export class Api {
     if (body) {
       data.body = JSON.stringify(body);
     }
-    return fetch(url, data).then(res => {
-      if (res.ok) {
-        return res.json();
-      }
-      return res.json().then((err) => Promise.reject(err.message));
+    if (params) {
+      Object.keys(params).forEach(item => {
+        if (!params[item]) {
+          delete params[item];
+        }
+      });
+    }
+    return fetch(
+      `${this._baseUrl}/${url}?${new URLSearchParams(params || {})}`,
+       data
+    ).then(res => {
+      return res.ok
+      ? res.json()
+      : res.json().then((err) => Promise.reject(err.message));
     });
   }
 
-  getUserCurrent() {
-    return this._sendRequest(
-      `${this._baseUrl}/user/current`,
-      GET
-    );
+  async getUserCurrent() {
+    return this._sendRequest('user/current', GET);
   }
 
-  getUserDetail(id) {
-    return this._sendRequest(`${this._baseUrl}/user/${id}`, GET);
+  async getUserDetail(id) {
+    return this._sendRequest(`user/${id}`, GET);
   }
 
-  getUserCreate(body) {
-    return this._sendRequest(`${this._baseUrl}/user`, POST, body);
+  async createUser(body) {
+    return this._sendRequest('user', POST, body);
   }
 
-  getUserList() {
-    return this._sendRequest(`${this._baseUrl}/user`, GET);
+  async getUserList(params) {
+    return this._sendRequest('user', GET, null, params);
   }
 
-  getOrganizationList() {
-    return this._sendRequest(`${this._baseUrl}/organization`, GET);
+  async blockUser(id) {
+    return this._sendRequest(`user/${id}/block`, PUT);
+  }
+
+  async unblockUser(id) {
+    return this._sendRequest(`user/${id}/unblock`, PUT);
+  }
+
+  async getOrganizationList() {
+    return this._sendRequest('organization', GET);
   }
 }
 
 const api = new Api({
   baseUrl: process.env.REACT_APP_BASE_URL || DEFAULT_BASE_URL,
 });
-  
+
 export default api;

@@ -7,8 +7,7 @@ import {
   USER_DETAIL_ROUTE,
   USER_LIST_ROUTE,
   USER_CREATE_ROUTE
-} from '../../utils/urls';
-import { USERS, ORGANIZATIONS } from '../../utils/mock';
+} from '../../constants/urls';
 import api from '../../utils/Api';
 
 import NotFound from '../NotFound/NotFound';
@@ -19,42 +18,49 @@ import UserCreate from '../staff/UserCreate/UserCreate';
 function App() {
   const [currentUser, setCurrentUser] = useState({});
   const [userList, setUserList] = useState([]);
-  const [organizationList, setOrganizationList] = useState(ORGANIZATIONS);
+  const [userDetail, setUserDetail] = useState({});
+  const [organizationList, setOrganizationList] = useState();
 
   useEffect(() => {
     reloadPageData();
   }, []);
 
   function getUserList(filters) {
-    let users = [...USERS];
-    if (filters.search) {
-      users = users.filter(user => user.username.includes(filters.search));
-    }
-    if (filters.organization) {
-      users = users.filter(user => user.organization?.id === filters.organization);
-    }
-    if (filters.isActive) {
-      users = users.filter(user => user.isActive === Boolean(filters.isActive));
-    }
-    setUserList(users);
+    api.getUserList(filters).then(userList => setUserList(userList));
   }
 
-  function reloadPageData() {
-    //return Promise.all([
-    //  api.getUserCurrent(),
-    //  api.getUserList({}),
-    //  api.getOrganizationList(),
-    //]).then(([user, userList, organizationList]) => {
-    //  setCurrentUser(user);
-    //  setUserList(userList);
-    //  setOrganizationList(organizationList);
-    //});
-    setCurrentUser(USERS);
-    getUserList({});
+  async function reloadPageData() {
+    Promise.all([
+      api.getUserCurrent(),
+      api.getUserList({}),
+      api.getOrganizationList(),
+    ]).then(([user, userList, organizationList]) => {
+      setCurrentUser(user);
+      setUserList(userList);
+      setOrganizationList(organizationList);
+    });
   }
 
-  function handleLoadUser(id) {
-    return USERS.filter(user => user.id === id)[0];
+  async function getUserDetail(id) {
+    api.getUserDetail(id).then((user) => setUserDetail(user));
+  }
+
+  function refresh(user, func) {
+    userList.forEach((item, index) => {
+      if(item.id === user.id) {
+        userList[index] = user;
+        setUserList([...userList]);
+        func(user);
+      }
+    })
+  }
+
+  async function blockUser(id, func) {
+    return api.blockUser(id).then(user => refresh(user, func));
+  }
+
+  async function unblockUser(id, func) {
+    return api.unblockUser(id).then(user => refresh(user, func));
   }
 
   return (
@@ -62,14 +68,17 @@ function App() {
       <div className='page__container'>
         <Routes>
           <Route path={USER_DETAIL_ROUTE}
-                 element={<UserDetail handleLoadUser={handleLoadUser}/>}/>
+                 element={<UserDetail handleLoadUser={getUserDetail}
+                                      userDetail={userDetail}/>}/>
           <Route path={USER_CREATE_ROUTE}
                  element={<UserCreate/>}/>
           <Route path={USER_LIST_ROUTE}
                  element={
                    <UserList userList={userList}
                              getUserList={getUserList}
-                             organizations={organizationList}/>
+                             organizations={organizationList}
+                             blockUser={blockUser}
+                             unblockUser={unblockUser}/>
                  }/>
           <Route path='*'
                  element={<NotFound/>}/>

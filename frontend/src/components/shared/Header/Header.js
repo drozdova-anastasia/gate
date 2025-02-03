@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router-dom';
 
 import './Header.css';
-import { USER_LIST_ROUTE } from '../../../utils/urls';
+import { USER_LIST_ROUTE } from '../../../constants/urls';
 
 function Header () {
   return (

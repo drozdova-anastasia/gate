@@ -3,7 +3,7 @@ import { useEffect, useState, useRef } from 'react';
 import './DateTimeForm.css';
 import Button from '../Button/Button';
 import TextInputForm from '../TextInputForm/TextInputForm';
-import { COL_6, COL_12, EMPTY } from '../../../utils/css';
+import { COL_6, COL_12, EMPTY } from '../../../constants/css';
 
 function DateTimeForm ({label, canClear, handleSelect, size}) {
   const [title, setTitle] = useState('');
@@ -52,15 +52,7 @@ function DateTimeForm ({label, canClear, handleSelect, size}) {
         show
         && <div className='date-time-form__window'>
           <div className='date-time-form__input-row'>
-            <TextInputForm label='Date and time, from'
-                           handleChange={() => {}}
-                           size={COL_6}
-                           ellipsis={true}
-                           placeholder='DD.MM.YYYY'/>
-            <TextInputForm label={EMPTY}
-                           handleChange={() => {}}
-                           size={COL_6}
-                           placeholder='HH:mm:ss'/>
+            <input type='date' className='date-time-form__date'/>
           </div>
           <div className='date-time-form__input-row'>
             <TextInputForm label='Date and time, to'
