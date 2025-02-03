@@ -52,5 +52,5 @@ export function getValue(item, data) {
 }
 
 export function numberRange(start, end) {
-  return new Array(end - start).fill().map((_, i) => i + start);
+  return new Array(end - start).fill().map((j, i) => i + start);
 }

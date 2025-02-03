@@ -45,7 +45,7 @@ export class Calendar {
     }
     for (
       let i = 0;
-      this.getDaysInMonth(this.currentMonth, this.currentYear);
+      i < this.getDaysInMonth(this.currentMonth, this.currentYear);
       i++
     ) {
       dayRange.push(moment(
@@ -65,7 +65,7 @@ export class Calendar {
     let weekNumber = 0;
     for (let i = 1; i < dayRange.length; i++) {
       if (i % 7 === 1) {
-        this.dayRange([]);
+        this.dayRange.push([]);
       }
       this.dayRange[weekNumber].push(dayRange[i - 1]);
       if (i % 7 === 0) {

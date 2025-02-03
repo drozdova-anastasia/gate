@@ -52,25 +52,7 @@ function DateTimeForm ({label, canClear, handleSelect, size}) {
       </div>
       {
         show
-        && <div className='date-time-form__window'>
-          <div className='date-time-form__input-row'>
-            <input type='date' className='date-time-form__date'/>
-          </div>
-          <div className='date-time-form__input-row'>
-            <FormCalendar/>
-            <TextInputForm label='Date and time, to'
-                           handleChange={() => {}}
-                           size={COL_6}
-                           ellipsis={true}
-                           placeholder='DD.MM.YYYY'/>
-            <TextInputForm label={EMPTY}
-                           handleChange={() => {}}
-                           size={COL_6}
-                           placeholder='HH:mm:ss'/>
-          </div>
-          <Button size={COL_12}
-                  name='Confirm'></Button>
-        </div>
+        && <FormCalendar/>
       }
     </label>
   );
