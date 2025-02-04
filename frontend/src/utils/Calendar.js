@@ -1,8 +1,6 @@
 import moment from 'moment/moment';
 
-import { DAYS_IN_MONTH } from '../constants/calendar';
-
-export const DATE_FORMAT = 'YYYY-MM-DD';
+import { DAYS_IN_MONTH, DATE_FORMAT, MONTHS } from '../constants/calendar';
 
 export class Calendar {
 
@@ -16,30 +14,36 @@ export class Calendar {
     this.showYearRange = false;
   }
 
+  getFirstDay(year, month) {
+    return moment(`${year}-${month + 1}-01`, DATE_FORMAT);
+  }
+
   reloadCurrent(data) {
     this.currentMonth = data.month();
     this.currentYear = data.year();
-    const prevMonth = this.currentMonth > 0 ? this.currentMonth - 1 : 11;
-    const prevYear = (
+    this.currentDisplay = `${MONTHS[this.currentMonth]}, ${this.currentYear}`;
+    this.prevMonth = this.currentMonth > 0 ? this.currentMonth - 1 : 11;
+    this.prevYear = (
       this.currentMonth > 0 ? this.currentYear : this.currentYear - 1
     );
-    const nextMonth = this.currentMonth === 11 ? 0 : this.currentMonth + 1;
-    const nextYear = (
+    this.nextMonth = this.currentMonth === 11 ? 0 : this.currentMonth + 1;
+    this.nextYear = (
       this.currentMonth === 11 ? this.currentYear + 1 : this.currentYear
     );
     this.dayRange = [];
     const dayRange = [];
-    let day = data.day();
+    const firstDay = this.getFirstDay(this.currentYear, this.currentMonth);
+    let day = firstDay.day();
     if (day === 0) {
       day = 7;
     }
     for (
-      let i = this.getDaysInMonth(prevMonth, prevYear) - day + 1;
-      i < this.getDaysInMonth(prevMonth, prevYear);
+      let i = this.getDaysInMonth(this.prevMonth, this.prevYear) - day + 1;
+      i < this.getDaysInMonth(this.prevMonth, this.prevYear);
       i++
     ) {
       dayRange.push(moment(
-        `${this.currentYear}-${this.currentMonth + 1}-${i + 1}`,
+        `${this.prevYear}-${this.prevMonth + 1}-${i + 1}`,
         DATE_FORMAT
       ));
     }
@@ -49,7 +53,7 @@ export class Calendar {
       i++
     ) {
       dayRange.push(moment(
-        `${prevYear}-${prevMonth + 1}-${i + 1}`,
+        `${this.prevYear}-${this.prevMonth + 1}-${i + 1}`,
         DATE_FORMAT
       ));
     }
@@ -57,13 +61,13 @@ export class Calendar {
     if (rigthOffset < 7) {
       for (let i = 0; i < rigthOffset; i++) {
         dayRange.push(moment(
-          `${nextYear}-${nextMonth + 1}-${i + 1}`,
+          `${this.nextYear}-${this.nextMonth + 1}-${i + 1}`,
           DATE_FORMAT
         ));
       }
     }
     let weekNumber = 0;
-    for (let i = 1; i < dayRange.length; i++) {
+    for (let i = 1; i <= dayRange.length; i++) {
       if (i % 7 === 1) {
         this.dayRange.push([]);
       }
@@ -72,6 +76,7 @@ export class Calendar {
         weekNumber++;
       }
     }
+    console.log(this.dayRange);
   }
 
   getDaysInMonth(month, year) {

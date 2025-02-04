@@ -1,11 +1,13 @@
+export const DATE_FORMAT = 'YYYY-MM-DD';
+
 export const WEEK_DAYS = [
-  'Mon',
-  'Tue',
-  'Wed',
-  'Thu',
-  'Fri',
-  'Sat',
-  'Sun'
+  'Mo',
+  'Tu',
+  'We',
+  'Th',
+  'Fr',
+  'Sa',
+  'Su'
 ];
 
 export const MONTHS = [

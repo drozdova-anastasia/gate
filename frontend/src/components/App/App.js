@@ -19,7 +19,7 @@ function App() {
   const [currentUser, setCurrentUser] = useState({});
   const [userList, setUserList] = useState([]);
   const [userDetail, setUserDetail] = useState({});
-  const [organizationList, setOrganizationList] = useState();
+  const [organizationList, setOrganizationList] = useState([]);
 
   useEffect(() => {
     reloadPageData();

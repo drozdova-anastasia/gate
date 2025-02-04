@@ -1,7 +1,116 @@
+.calendar {
+  padding: 0;
+  margin: 0;
+  height: 250px;
+  width: 250px;
+  border: 1px solid grey;
+  position: relative;
+  background-color: white;
+}
+
+.calendar__title {
+  padding: 0;
+  margin: 0;
+  height: 36px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid grey;
+}
+
 .calendar__years {
   padding: 0;
   margin: 0;
-  height: 100px;
+  height: 160px;
   width: 65px;
   overflow-y: auto;
+  position: absolute;
+  z-index: 4;
+  right: 35px;
+  top: 36px;
+  background-color: white;
+  border: 1px solid grey;
+}
+
+.calendar__year {
+  padding: 5px;
+  margin: 0;
+}
+
+.calendar__left-arrow {
+  padding: 0;
+  margin: 0;
+  width: 30px;
+  text-align: center;
+}
+
+.calendar__month-year {
+  padding: 0;
+  margin: 0;
+  width: 140px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.calendar__down-arrow {
+  padding: 0;
+  margin: 0;
+  width: 50px;
+  text-align: center;
+}
+
+.calendar__right-arrow {
+  padding: 0;
+  margin: 0;
+  width: 30px;
+  text-align: center;
+}
+
+.calendar__table {
+  padding: 20px 24px;
+  margin: 0;
+  height: calc(100% - 36px);
+  width: 100%;
+}
+
+.calendar__table-thead {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+
+.calendar__table-header {
+  padding: 0 0 10px 0;
+  margin: 0;
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.calendar__table-week-day {
+  padding: 0;
+  margin: 0;
+  color: grey;
+}
+
+.calendar__table-body {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.calendar__table-row {
+  padding: 0;
+  margin: 0;
+  display: flex;
+  width: 100%;
+}
+
+.calendar__table-day {
+  padding: 0;
+  margin: 0;
+  width: calc(100%/7);
 }

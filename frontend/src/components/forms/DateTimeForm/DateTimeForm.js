@@ -52,7 +52,9 @@ function DateTimeForm ({label, canClear, handleSelect, size}) {
       </div>
       {
         show
-        && <FormCalendar/>
+        && <div className='date-time-form__calendar'>
+          <FormCalendar/>
+        </div>
       }
     </label>
   );
