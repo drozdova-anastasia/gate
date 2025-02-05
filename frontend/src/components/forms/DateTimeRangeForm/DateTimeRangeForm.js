@@ -53,7 +53,7 @@ function DateTimeRangeForm ({label, canClear, handleSelect, size}) {
       {
         show
         && <div className='datetime-range-form__calendar'>
-          <FormCalendar/>
+          <FormCalendar handleClick={(item)=>{}}/>
         </div>
       }
     </label>

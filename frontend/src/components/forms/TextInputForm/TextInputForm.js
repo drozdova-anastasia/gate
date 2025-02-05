@@ -1,7 +1,5 @@
 import './TextInputForm.css';
 
-import { EMPTY } from '../../../constants/css';
-
 function TextInputForm ({
   label,
   handleChange,
@@ -11,25 +9,18 @@ function TextInputForm ({
   name,
   value
 }) {
-
-  function getClassName() {
-    return [
-      'text-input',
-      size,
-      label === EMPTY && 'text-input_white-text',
-      ellipsis && 'text-input_ellipsis'
-    ].filter(item => item).join(' ');
-  }
-
   return (
-    <label className={getClassName()}>{label}
+    <div className={`text-input${ size && ` ${size}`}`}>
+      <label className={`base-text text-input__label${ellipsis && ' text-input__label_ellipsis'}`}
+             htmlFor={name}>{label}</label>
       <input type='text'
+             id={name}
              name={name}
              className='text-input__input'
              placeholder={placeholder}
              onChange={handleChange}
              value={value}/>
-    </label>
+    </div>
   );
 }
 

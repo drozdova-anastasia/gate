@@ -3,7 +3,7 @@ import moment from 'moment/moment';
 import { DAYS_IN_MONTH, DATE_FORMAT, MONTHS } from '../constants/calendar';
 import { numberRange } from '../utils/functools';
 
-export class Calendar {
+export default class Calendar {
   years = numberRange(1900, moment().year() + 1).reverse();
 
   constructor(date) {
@@ -77,7 +77,6 @@ export class Calendar {
         weekNumber++;
       }
     }
-    console.log(this.dayRange);
   }
 
   getDaysInMonth(month, year) {

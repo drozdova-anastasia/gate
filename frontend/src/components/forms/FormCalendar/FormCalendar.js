@@ -1,17 +1,16 @@
-import { useState } from 'react';
+import { useEffect, useReducer, useState } from 'react';
 
 import './FormCalendar.css';
-
 import { WEEK_DAYS } from '../../../constants/calendar';
-import { Calendar } from '../../../utils/Calendar';
+import Calendar from '../../../utils/Calendar';
 
-const calendar = new Calendar();
-
-function FormCalendar ({ handleSelectDayClick }) {
+function FormCalendar ({ handleClick }) {
+  const [calendar, setCalendar] = useState(null);
+  const [, forceUpdate] = useReducer(x => x + 1, 0);
   const [showYears, setShowYears] = useState(false);
-  const [currentDisplay, setCurrentDisplay] = useState(calendar.currentDisplay);
-  const [dayRange, setDayRange] = useState(calendar.dayRange);
   const [day, setDay] = useState(null);
+
+  useEffect(() => setCalendar(new Calendar()), []);
 
   function getDayClassName(item) {
     let className = 'clickable calendar__table-day';
@@ -40,8 +39,7 @@ function FormCalendar ({ handleSelectDayClick }) {
 
   function reloadCurrent(year, month) {
     calendar.reloadCurrent(calendar.getFirstDay(year, month));
-    setCurrentDisplay(calendar.currentDisplay);
-    setDayRange(calendar.dayRange);
+    forceUpdate();
   }
 
   function handleSelectYearClick(event) {
@@ -62,23 +60,20 @@ function FormCalendar ({ handleSelectDayClick }) {
     setDay(calendar.today);
   }
 
-  function handleShowYearsClick() {
-    setShowYears(!showYears);
-  }
-
   function handleSelectDayClick(day) {
     setDay(day);
-    handleSelectDayClick(day);
+    handleClick(day);
   }
 
   return (
-    <div className='calendar'>
+  <>{
+    calendar && <div className='calendar'>
       <div className='calendar__title'>
         <span className='clickable calendar__left-arrow'
               onClick={handleLeftArrowClick}>◂</span>
-        <p className='clickable calendar__month-year'>{ currentDisplay }</p>
+        <p className='clickable calendar__month-year'>{ calendar.currentDisplay }</p>
         <span className='clickable calendar__down-arrow'
-              onClick={handleShowYearsClick}>▾</span>
+              onClick={() => setShowYears(!showYears)}>▾</span>
         <span className='clickable calendar__circle'
               onClick={handleCircleClick}>⏺︎</span>
         <span className='clickable calendar__right-arrow'
@@ -108,7 +103,7 @@ function FormCalendar ({ handleSelectDayClick }) {
         </thead>
         <tbody className='calendar__table-body'>
           {
-            dayRange.map((week, index) =>
+            calendar.dayRange.map((week, index) =>
               <tr className='calendar__table-row'
                   key={index}>{ getTableRow(week) }</tr>
             )
@@ -116,6 +111,7 @@ function FormCalendar ({ handleSelectDayClick }) {
         </tbody>
       </table>
     </div>
+  }</>
   );
 }
 
