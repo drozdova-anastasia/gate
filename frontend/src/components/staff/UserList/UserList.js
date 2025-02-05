@@ -13,7 +13,7 @@ import ClearButton from '../../forms/ClearButton/ClearButton';
 import Row from '../../forms/Row/Row';
 import TextInputForm from '../../forms/TextInputForm/TextInputForm';
 import SelectForm from '../../forms/SelectForm/SelectForm';
-import DateTimeForm from '../../forms/DateTimeForm/DateTimeForm';
+import DateTimeRangeForm from '../../forms/DateTimeRangeForm/DateTimeRangeForm';
 
 function UserList ({
   userList,
@@ -101,10 +101,10 @@ function UserList ({
                       canClear={true}
                       value={form['organization']}
                       handleSelect={(value) => update({organization: value})}/>
-          <DateTimeForm size={COL_3}
-                        label='Last login'/>
-          <DateTimeForm size={COL_3}
-                        label='Updated'/>
+          <DateTimeRangeForm size={COL_3}
+                             label='Last login'/>
+          <DateTimeRangeForm size={COL_3}
+                             label='Updated'/>
         </Row>
         <Row>
           <SelectForm choices={IS_ACTIVE_TYPES}

@@ -1,35 +1,31 @@
 import { useState } from 'react';
-import moment from 'moment/moment';
 
 import './FormCalendar.css';
 
 import { WEEK_DAYS } from '../../../constants/calendar';
-import { numberRange } from '../../../utils/functools';
 import { Calendar } from '../../../utils/Calendar';
 
-function FormCalendar () {
-  const calendar = new Calendar();
-  const years = numberRange(1900, moment().year() + 1).reverse();
+const calendar = new Calendar();
+
+function FormCalendar ({ handleSelectDayClick }) {
   const [showYears, setShowYears] = useState(false);
   const [currentDisplay, setCurrentDisplay] = useState(calendar.currentDisplay);
   const [dayRange, setDayRange] = useState(calendar.dayRange);
   const [day, setDay] = useState(null);
-  
-  function handleShowYearsClick() {
-    setShowYears(!showYears);
-  }
-
-  function handleSelectDayClick(day) {
-    setDay(day);
-  }
 
   function getDayClassName(item) {
     let className = 'clickable calendar__table-day';
-    if (item === day) {
+    if (calendar.compareDates(item, day)) {
       className = `${className} calendar__table-day_selected`;
     }
-    if (item === calendar.today) {
-      return `${className} calendar__table-day_today`;
+    if (calendar.compareDates(item, calendar.today)) {
+      className = `${className} calendar__table-day_today`;
+    }
+    if (
+      item.month() !== calendar.currentMonth
+      || item.year() !== calendar.currentYear
+    ) {
+      className = `${className} calendar__table-day_not-current`;
     }
     return className;
   }
@@ -49,7 +45,7 @@ function FormCalendar () {
   }
 
   function handleSelectYearClick(event) {
-    //reloadCurrent(event.target.textContent, calendar.currentMonth);
+    reloadCurrent(event.target.textContent, calendar.currentMonth);
     setShowYears(false);
   }
 
@@ -58,7 +54,21 @@ function FormCalendar () {
   }
 
   function handleRightArrowClick() {
-    //reloadCurrent(calendar.nextYear, calendar.nextMonth);
+    reloadCurrent(calendar.nextYear, calendar.nextMonth);
+  }
+
+  function handleCircleClick() {
+    reloadCurrent(calendar.today.year(), calendar.today.month());
+    setDay(calendar.today);
+  }
+
+  function handleShowYearsClick() {
+    setShowYears(!showYears);
+  }
+
+  function handleSelectDayClick(day) {
+    setDay(day);
+    handleSelectDayClick(day);
   }
 
   return (
@@ -69,12 +79,14 @@ function FormCalendar () {
         <p className='clickable calendar__month-year'>{ currentDisplay }</p>
         <span className='clickable calendar__down-arrow'
               onClick={handleShowYearsClick}>▾</span>
+        <span className='clickable calendar__circle'
+              onClick={handleCircleClick}>⏺︎</span>
         <span className='clickable calendar__right-arrow'
               onClick={handleRightArrowClick}>▸</span>
         {
           showYears && <ul className='calendar__years'>
             {
-              years.map((item, index) => 
+              calendar.years.map((item, index) => 
                 <li className='clickable calendar__year'
                      onClick={handleSelectYearClick}
                      key ={index}>{ item }</li>

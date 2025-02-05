@@ -2,7 +2,7 @@
   padding: 0;
   margin: 0;
   height: 250px;
-  width: 250px;
+  width: 260px;
   border: 1px solid grey;
   position: relative;
   background-color: white;
@@ -16,6 +16,42 @@
   display: flex;
   align-items: center;
   border-bottom: 1px solid grey;
+}
+
+.calendar__left-arrow {
+  padding: 0;
+  margin: 0;
+  width: 30px;
+  text-align: center;
+}
+
+.calendar__month-year {
+  padding: 0;
+  margin: 0;
+  width: 140px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.calendar__down-arrow {
+  padding: 0;
+  margin: 0;
+  width: 30px;
+  text-align: center;
+}
+
+.calendar__circle {
+  padding: 0;
+  margin: 0;
+  width: 20px;
+  text-align: center;
+}
+
+.calendar__right-arrow {
+  padding: 0;
+  margin: 0;
+  width: 30px;
+  text-align: center;
 }
 
 .calendar__years {
@@ -37,40 +73,15 @@
   margin: 0;
 }
 
-.calendar__left-arrow {
-  padding: 0;
-  margin: 0;
-  width: 30px;
-  text-align: center;
-}
-
-.calendar__month-year {
-  padding: 0;
-  margin: 0;
-  width: 140px;
-  text-align: center;
-  vertical-align: middle;
-}
-
-.calendar__down-arrow {
-  padding: 0;
-  margin: 0;
-  width: 50px;
-  text-align: center;
-}
-
-.calendar__right-arrow {
-  padding: 0;
-  margin: 0;
-  width: 30px;
-  text-align: center;
-}
-
 .calendar__table {
-  padding: 20px 24px;
+  padding: 0 24px;
   margin: 0;
   height: calc(100% - 36px);
   width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 .calendar__table-thead {
@@ -121,4 +132,8 @@
 
 .calendar__table-day_today {
   border: 1px solid grey;
+}
+
+.calendar__table-day_not-current {
+  color: grey;
 }

@@ -1,12 +1,18 @@
 import moment from 'moment/moment';
 
 import { DAYS_IN_MONTH, DATE_FORMAT, MONTHS } from '../constants/calendar';
+import { numberRange } from '../utils/functools';
 
 export class Calendar {
+  years = numberRange(1900, moment().year() + 1).reverse();
 
   constructor(date) {
     this.today =  date || moment();
     this.reloadCurrent(this.today);
+  }
+
+  compareDates(first, second) {
+    return first?.format(DATE_FORMAT) === second?.format(DATE_FORMAT)
   }
 
   getFirstDay(year, month) {
@@ -48,7 +54,7 @@ export class Calendar {
       i++
     ) {
       dayRange.push(moment(
-        `${this.prevYear}-${this.prevMonth + 1}-${i + 1}`,
+        `${this.currentYear}-${this.currentMonth + 1}-${i + 1}`,
         DATE_FORMAT
       ));
     }

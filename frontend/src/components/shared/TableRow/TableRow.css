@@ -1,13 +1,16 @@
 .table-row {
+  margin: 0;
+  padding: 0;
   border-bottom: 1px solid grey;
 }
 
-.table-row__select-td {
-  width: 24px;
+.table-row__checkbox {
+  margin: 0;
   padding-left: 11px;
+  width: 24px;
 }
 
-.table-row__td {
+.table-row__column {
   padding-top: 10px;
   padding-bottom: 10px;
   text-align: center;

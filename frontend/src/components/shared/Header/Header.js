@@ -12,9 +12,9 @@ function Header () {
             aria-label='Секция с шапкой сайта'>
        <nav className='header__links'>
         <NavLink to={USER_LIST_ROUTE}
-                 className='link header__link'>Users</NavLink>
+                 className='clickable base-text header__link'>Users</NavLink>
         <NavLink to={ORGANIZATION_LIST_ROUTE}
-                 className='link header__link'>Organizations</NavLink>
+                 className='clickable base-text header__link'>Organizations</NavLink>
       </nav>
     </header>
   );

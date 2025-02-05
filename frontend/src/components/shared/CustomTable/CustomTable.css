@@ -1,16 +1,32 @@
 .custom-table {
+  margin: 0;
+  padding: 0;
+}
+
+.custom-table__content {
+  margin: 0;
+  padding: 0;
   border-collapse: collapse;
   width: 100%;
 }
 
-.custom-table__tr {
+.custom-table__head {
+  margin: 0;
+  padding: 0;
+}
+
+.custom-table__row {
+  margin: 0;
+  padding: 0;
   border: 1px solid grey; 
 }
 
-.custom-table__th {
+.custom-table__column {
+  margin: 0;
   padding: 10px 0;
+  font-weight: bold;
 }
 
-.custom-table__select-th {
+.custom-table__checkbox {
   padding-left: 10px;
 }

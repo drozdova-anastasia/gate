@@ -1,6 +1,7 @@
 import React from 'react';
 
 import './CustomTable.css';
+
 import TableRow from '../TableRow/TableRow';
 import CheckboxForm from '../../forms/CheckboxForm/CheckboxForm';
 
@@ -23,23 +24,22 @@ function CustomTable ({
     } else {
       selectedList.push(item);
     }
-    // not rerender without call setSelectedList
     setSelectedList([...selectedList]);
   }
 
   return (
-    <section className=''
+    <section className='custom-table'
              aria-label='Секция со списком'>
-      <table className='custom-table'>      
-        <thead className='custom-table__thead'>
-          <tr className='custom-table__tr '>
-            <th className='custom-table__th custom-table__select-th'>
+      <table className='custom-table__content'>
+        <thead className='custom-table__head'>
+          <tr className='custom-table__row '>
+            <th className='custom-table__column custom-table__checkbox'>
               <CheckboxForm checked={selectedList.length > 0}
                             handleChecked={handleSelectAll}/>
             </th>
             { 
               headers.map((header, index) =>
-                <th className='custom-table__th'
+                <th className='base-text custom-table__column'
                     key={index}>{header.label}</th>
               ) 
             }
@@ -57,7 +57,7 @@ function CustomTable ({
             )
           }
         </tbody>
-      </table>       
+      </table>
     </section>
   );
 }

@@ -1,13 +1,13 @@
 import { useEffect, useState, useRef } from 'react';
 
-import './DateTimeForm.css';
+import './DateTimeRangeForm.css';
 import { COL_6, COL_12, EMPTY } from '../../../constants/css';
 
 import Button from '../Button/Button';
 import TextInputForm from '../TextInputForm/TextInputForm';
 import FormCalendar from '../FormCalendar/FormCalendar';
 
-function DateTimeForm ({label, canClear, handleSelect, size}) {
+function DateTimeRangeForm ({label, canClear, handleSelect, size}) {
   const [title, setTitle] = useState('');
   const [show, setShow] = useState(false);
   const ref = useRef();
@@ -35,9 +35,9 @@ function DateTimeForm ({label, canClear, handleSelect, size}) {
   }
 
   return (
-    <label className={`date-time-form${size ? ` ${size}` : ''}`}
+    <label className={`datetime-range-form${size ? ` ${size}` : ''}`}
            ref={ref}>{label}
-      <div className='clickable date-time-form__select'
+      <div className='clickable datetime-range-form__select'
            onClick={() => setShow(!show)}>
         {
           title
@@ -52,7 +52,7 @@ function DateTimeForm ({label, canClear, handleSelect, size}) {
       </div>
       {
         show
-        && <div className='date-time-form__calendar'>
+        && <div className='datetime-range-form__calendar'>
           <FormCalendar/>
         </div>
       }
@@ -60,4 +60,4 @@ function DateTimeForm ({label, canClear, handleSelect, size}) {
   );
 }
 
-export default DateTimeForm;
+export default DateTimeRangeForm;

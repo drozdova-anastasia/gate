@@ -15,8 +15,8 @@ function Button ({
 
   return (
     display
-    && <label className={`button${size ? ` ${size}` : ''}`}>
-         <button className='clickable button__key'
+    && <label className={`base-text button${size ? ` ${size}` : ''}`}>
+         <button className='clickable base-text button__key'
                  onClick={handleClick}>{name}</button>
          {children}
        </label>

@@ -1,11 +1,11 @@
-.date-time-form {
+.datetime-range-form {
   margin: 0;
   padding: 0;
   width: 100%;
   position: relative;
 }
 
-.date-time-form__select {
+.datetime-range-form__select {
   margin: 0;
   padding: 0 7.5px;
   border: 1px solid grey;
@@ -15,14 +15,14 @@
   align-items: center;
 }
 
-.date-time-form__title {
+.datetime-range-form__title {
   margin: 0;
   padding: 0;
   width: calc(100% - 27px);  
   overflow: hidden;
 }
 
-.date-time-form__cancel {
+.datetime-range-form__cancel {
   margin: 0;
   padding: 0;
   position: absolute;
@@ -31,7 +31,7 @@
   font-weight: 900;
 }
 
-.date-time-form__arrow {
+.datetime-range-form__arrow {
   margin: 0;
   padding: 0;
   position: absolute;
@@ -40,7 +40,7 @@
   color: grey;
 }
 
-.date-time-form__window {
+.datetime-range-form__window {
   margin: 0;
   padding: 5px;
   border: 1px solid grey;
@@ -54,14 +54,14 @@
   gap: 20px;
 }
 
-.date-time-form__input-row {
+.datetime-range-form__input-row {
   margin: 0;
   padding: 0;
   display: flex;
   gap: 20px;
 }
 
-.date-time-form__date {
+.datetime-range-form__date {
   background: transparent;
   padding: 5px;
   ::-webkit-datetime-edit {
@@ -69,7 +69,7 @@
 }
 }
 
-.date-time-form__calendar {
+.datetime-range-form__calendar {
   margin: 0;
   padding: 0;
   position: absolute;
