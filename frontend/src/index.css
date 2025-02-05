@@ -5,6 +5,11 @@
   cursor: pointer;
 }
 
+.clickable:hover {
+  opacity: 0.7;
+}
+
+
 .col-3 {
   max-width: calc(25% - 15px);
 }

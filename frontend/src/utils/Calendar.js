@@ -5,13 +5,8 @@ import { DAYS_IN_MONTH, DATE_FORMAT, MONTHS } from '../constants/calendar';
 export class Calendar {
 
   constructor(date) {
-    if (date) {
-      this.reloadCurrent(date);
-    } else {
-      this.reloadCurrent(moment());
-    }
-    this.mouseIn = false;
-    this.showYearRange = false;
+    this.today =  date || moment();
+    this.reloadCurrent(this.today);
   }
 
   getFirstDay(year, month) {

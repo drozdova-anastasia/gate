@@ -6,14 +6,15 @@ import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import {
   USER_DETAIL_ROUTE,
   USER_LIST_ROUTE,
-  USER_CREATE_ROUTE
+  USER_CREATE_ROUTE,
+  ORGANIZATION_LIST_ROUTE
 } from '../../constants/urls';
 import api from '../../utils/Api';
 
 import NotFound from '../NotFound/NotFound';
-import UserDetail from '../staff/UserDetail/UserDetail';
 import UserList from '../staff/UserList/UserList';
-import UserCreate from '../staff/UserCreate/UserCreate';
+import UserCreateDetail from '../staff/UserCreateDetail/UserCreateDetail';
+import OrganizationList from '../staff/OrganizationList/OrganizationList';
 
 function App() {
   const [currentUser, setCurrentUser] = useState({});
@@ -68,10 +69,9 @@ function App() {
       <div className='page__container'>
         <Routes>
           <Route path={USER_DETAIL_ROUTE}
-                 element={<UserDetail handleLoadUser={getUserDetail}
-                                      userDetail={userDetail}/>}/>
+                 element={<UserCreateDetail handleLoadUser={getUserDetail}/>}/>
           <Route path={USER_CREATE_ROUTE}
-                 element={<UserCreate/>}/>
+                 element={<UserCreateDetail/>}/>
           <Route path={USER_LIST_ROUTE}
                  element={
                    <UserList userList={userList}
@@ -80,6 +80,8 @@ function App() {
                              blockUser={blockUser}
                              unblockUser={unblockUser}/>
                  }/>
+          <Route path={ORGANIZATION_LIST_ROUTE}
+                 element={<OrganizationList/>}/>
           <Route path='*'
                  element={<NotFound/>}/>
         </Routes>

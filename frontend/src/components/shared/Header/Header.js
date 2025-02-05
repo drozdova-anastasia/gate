@@ -1,7 +1,10 @@
 import { NavLink } from 'react-router-dom';
 
 import './Header.css';
-import { USER_LIST_ROUTE } from '../../../constants/urls';
+import {
+  USER_LIST_ROUTE,
+  ORGANIZATION_LIST_ROUTE
+} from '../../../constants/urls';
 
 function Header () {
   return (
@@ -10,6 +13,8 @@ function Header () {
        <nav className='header__links'>
         <NavLink to={USER_LIST_ROUTE}
                  className='link header__link'>Users</NavLink>
+        <NavLink to={ORGANIZATION_LIST_ROUTE}
+                 className='link header__link'>Organizations</NavLink>
       </nav>
     </header>
   );

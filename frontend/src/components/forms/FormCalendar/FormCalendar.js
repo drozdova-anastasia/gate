@@ -13,14 +13,31 @@ function FormCalendar () {
   const [showYears, setShowYears] = useState(false);
   const [currentDisplay, setCurrentDisplay] = useState(calendar.currentDisplay);
   const [dayRange, setDayRange] = useState(calendar.dayRange);
+  const [day, setDay] = useState(null);
   
   function handleShowYearsClick() {
     setShowYears(!showYears);
   }
 
+  function handleSelectDayClick(day) {
+    setDay(day);
+  }
+
+  function getDayClassName(item) {
+    let className = 'clickable calendar__table-day';
+    if (item === day) {
+      className = `${className} calendar__table-day_selected`;
+    }
+    if (item === calendar.today) {
+      return `${className} calendar__table-day_today`;
+    }
+    return className;
+  }
+
   function getTableRow(week) {
     return week.map((item, index) => 
-      <th className='calendar__table-day'
+      <th className={ getDayClassName(item) }
+          onClick={() => handleSelectDayClick(item)}
           key={index}>{ item.format('D') }</th>
     );
   }
