@@ -13,7 +13,7 @@ import ClearButton from '../../forms/ClearButton/ClearButton';
 import Row from '../../forms/Row/Row';
 import TextInputForm from '../../forms/TextInputForm/TextInputForm';
 import SelectForm from '../../forms/SelectForm/SelectForm';
-import DateTimeRangeForm from '../../forms/DateTimeRangeForm/DateTimeRangeForm';
+import FormDate from '../../forms/FormDate/FormDate';
 
 function UserList ({
   userList,
@@ -25,7 +25,8 @@ function UserList ({
   const initialValue = {
     'search': '',
     'isActive': '',
-    'organization': ''
+    'organization': '',
+    'lastLogin': ''
   }
   const navigate = useNavigate();
   const [selectedList, setSelectedList] = useState([]);
@@ -92,37 +93,31 @@ function UserList ({
         <Row>
           <TextInputForm label='Search'
                          size={COL_3}
-                         handleChange={(event) => update({search: event.target.value})}
                          placeholder='FIO|Login|SNILS'
-                         value={form['search']}/>
+                         name='search'
+                         value={form['search']}
+                         handleChange={(event) => update({search: event.target.value})}/>
           <SelectForm label='Organization'
                       size={COL_3}
                       choices={organizations}
                       canClear={true}
+                      name='organization'
                       value={form['organization']}
                       handleSelect={(value) => update({organization: value})}/>
-          <DateTimeRangeForm size={COL_3}
-                             label='Last login'/>
-          <DateTimeRangeForm size={COL_3}
-                             label='Updated'/>
+          <FormDate size={COL_3}
+                    label='Last login'
+                    name='lastLogin'
+                    value={form['lastLogin']}
+                    handleChange={(value) => update({lastLogin: value})}/>
         </Row>
         <Row>
           <SelectForm choices={IS_ACTIVE_TYPES}
                       size={COL_3}
                       canClear={true}
                       placeholder='Is active'
+                      name='isActive'
                       value={form['isActive']}
                       handleSelect={(value) => update({isActive: value})}/>
-          <SelectForm choices={organizations}
-                      size={COL_3}
-                      canClear={true}
-                      placeholder='Services'
-                      handleSelect={(value) => update({organization: value})}/>
-          <SelectForm choices={organizations}
-                      size={COL_3}
-                      canClear={true}
-                      placeholder='Permissions'
-                      handleSelect={(value) => update({organization: value})}/>
           <ClearButton size={COL_3}
                        handleClick={reset}
                        name='Clear filters'/>

@@ -1,0 +1,43 @@
+.form-date {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-date__label {
+  margin: 0;
+  padding: 0;
+}
+
+.form-date__input {
+  margin: 0;
+  padding: 0 7.5px;
+  border: 1px solid grey;
+  height: 36px;
+}
+
+.form-date__input:focus {
+  outline: none;
+}
+
+.form-date__arrow {
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  z-index: 2;
+  right: 7.5px;
+  bottom: 10px;
+  font-weight: 900;
+  color: grey;
+}
+
+.form-date__window {
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  z-index: 2;
+  top: calc(100% - 1px);
+}

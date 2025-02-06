@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from 'react';
 
 import './SelectForm.css';
-import TextInputForm from '../TextInputForm/TextInputForm';
+import { getTitleByOptions } from '../../../utils/functools';
 
 function SelectForm ({
   label,
@@ -13,7 +13,7 @@ function SelectForm ({
   name,
   value
 }) {
-  const [items, setItems] = useState(choices);
+  const [selectedItems, setSelectedItems] = useState(choices);
   const [show, setShow] = useState(false);
   const ref = useRef();
   const inputRef = useRef();
@@ -36,7 +36,7 @@ function SelectForm ({
 
   function handleChange(event) {
     const value = event.target.value;
-    setItems(
+    setSelectedItems(
       !value
       ? choices
       : choices.filter(item => item.title.includes(value))
@@ -53,40 +53,44 @@ function SelectForm ({
     handleSelect('');
   }
 
+
   return (
-    <div className={`select-input${size ? ` ${size}` : ''}`}
+    <div className={`select-input${size && ` ${size}`}`}
          ref={ref}>
-      <label className='clickable select-input__label'
-             onClick={() => setShow(!show)}>{label}
-        <input ref={inputRef}
-               className='clickable select-input__input'
-               placeholder={placeholder}
-               readOnly onChange={handleSelect}
-               name={name}
-               value={value}/>
-        {
-          (canClear && inputRef.current?.defaultValue)
-          && <span className='select-input__cancel'
-                   onClick={handleCancel}>✕</span>
-        }
-        <span className='select-input__arrow'>▾</span>
-      </label>
+      <label className='base-text select-input__label'>{label}</label>
+      <input ref={inputRef}
+             className='base-text select-input__input'
+             onChange={handleSelect}
+             name={name}
+             id={name}
+             value={value}/>
+      <div className='clickable select-input__display'
+           onClick={() => setShow(!show)}>
+        <p className={`base-text select-input__${!value ? 'placeholder' : 'title'}`}
+           onClick={() => setShow(!show)}>{!value ? placeholder : getTitleByOptions(value, choices)}</p>
+      </div>
       {
-        show
-        && <div className='select-input__window'>
-          <TextInputForm placeholder='Search...'
-                         handleChange={handleChange}/>
-          <div className='select-input__wrap'>
-            <div className='select-input__items'>
-              {
-                items.map((item, index) => 
-                  <div className='clickable select-input__item'
-                       key={index}
-                       onClick={() => handleSelectItem(item)}>{item.title}</div>
-                )
-              }
-            </div>
-          </div>
+        canClear && inputRef.current?.defaultValue &&
+        <span className='clickable select-input__cancel'
+              onClick={handleCancel}>✕</span>
+      }
+      <span className='clickable select-input__arrow'
+            onClick={() => setShow(!show)}>▾</span>
+      {
+        show &&
+        <div className='select-input__window'>
+          <input className='base-text select-input__window-input'
+                 placeholder='Search...'
+                 onChange={handleChange}/> 
+          <ul className='select-input__items'>
+           {
+              selectedItems.map((item, index) => 
+                <li className='clickable base-text select-input__item'
+                    key={index}
+                    onClick={() => handleSelectItem(item)}>{item.title}</li>
+              )
+            }
+          </ul>
         </div>
       }
     </div>

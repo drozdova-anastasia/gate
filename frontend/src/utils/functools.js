@@ -28,7 +28,7 @@ export function getTitleByOptions(value, options) {
   if (!value) {
     return '';
   }
-  return value;
+  return options.filter(item => item.value === value)[0]?.title;
 }
 
 export function last(val) {

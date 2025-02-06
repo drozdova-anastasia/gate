@@ -22,7 +22,10 @@ def user_list():
                 users
             ))
         else:
-            users = list(filter(lambda item: str(item[key]) == value, users))
+            users = list(filter(
+                lambda item: str(item.get(key)) == value,
+                users
+            ))
     return users
 
 @app.get('/user/<int:id>')
@@ -49,10 +52,18 @@ def unblock_user(id: int):
     user['isActive'] = True
     return user
 
+@app.post('/user/create')
+@cross_origin(supports_credentials=True)
+def user_create():
+    user = request.get_json()
+    user['id'] = len(USERS) + 1
+    USERS.append(user)
+    return user
+
 @app.get('/organization')
 @cross_origin(supports_credentials=True)
 def organization_list():
     return ORGANIZATIONS
 
 if __name__ == '__main__':
-  app.run(host='0.0.0.0', port=5000, debug=True)
+    app.run(host='0.0.0.0', port=5000, debug=True)

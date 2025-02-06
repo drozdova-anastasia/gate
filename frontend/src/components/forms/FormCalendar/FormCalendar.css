@@ -127,7 +127,7 @@
 }
 
 .calendar__table-day_selected {
-  background-color: grey;
+  background-color: lightblue;
 }
 
 .calendar__table-day_today {

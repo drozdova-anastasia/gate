@@ -1,16 +1,26 @@
 import { useEffect, useReducer, useState } from 'react';
 
 import './FormCalendar.css';
-import { WEEK_DAYS } from '../../../constants/calendar';
+import { WEEK_DAYS, DATE_FORMAT } from '../../../constants/calendar';
 import Calendar from '../../../utils/Calendar';
 
-function FormCalendar ({ handleClick }) {
+function FormCalendar ({ handleClick, value }) {
   const [calendar, setCalendar] = useState(null);
   const [, forceUpdate] = useReducer(x => x + 1, 0);
   const [showYears, setShowYears] = useState(false);
   const [day, setDay] = useState(null);
 
   useEffect(() => setCalendar(new Calendar()), []);
+
+  //useEffect(
+  //  () => {
+  //    if (calendar) {
+  //      calendar.reloadCurrent(calendar.fromDate(value));
+  //      forceUpdate();
+  //    }
+  //  },
+   // [value]
+  //);
 
   function getDayClassName(item) {
     let className = 'clickable calendar__table-day';
@@ -62,7 +72,7 @@ function FormCalendar ({ handleClick }) {
 
   function handleSelectDayClick(day) {
     setDay(day);
-    handleClick(day);
+    handleClick(day.format(DATE_FORMAT));
   }
 
   return (
@@ -79,7 +89,8 @@ function FormCalendar ({ handleClick }) {
         <span className='clickable calendar__right-arrow'
               onClick={handleRightArrowClick}>▸</span>
         {
-          showYears && <ul className='calendar__years'>
+          showYears &&
+          <ul className='calendar__years'>
             {
               calendar.years.map((item, index) => 
                 <li className='clickable calendar__year'

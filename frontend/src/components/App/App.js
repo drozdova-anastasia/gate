@@ -21,6 +21,7 @@ function App() {
   const [userList, setUserList] = useState([]);
   const [userDetail, setUserDetail] = useState({});
   const [organizationList, setOrganizationList] = useState([]);
+  const [isProcess, setIsProcess] = useState(false);
 
   useEffect(() => {
     reloadPageData();
@@ -31,6 +32,7 @@ function App() {
   }
 
   async function reloadPageData() {
+    setIsProcess(true);
     Promise.all([
       api.getUserCurrent(),
       api.getUserList({}),
@@ -39,6 +41,7 @@ function App() {
       setCurrentUser(user);
       setUserList(userList);
       setOrganizationList(organizationList);
+      setIsProcess(false);
     });
   }
 
@@ -66,8 +69,8 @@ function App() {
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
-      <div className='page__container'>
-        <Routes>
+      <div className='page__container'>{
+        !isProcess && <Routes>
           <Route path={USER_DETAIL_ROUTE}
                  element={<UserCreateDetail handleLoadUser={getUserDetail}/>}/>
           <Route path={USER_CREATE_ROUTE}
@@ -85,7 +88,7 @@ function App() {
           <Route path='*'
                  element={<NotFound/>}/>
         </Routes>
-      </div>
+      }</div>
     </CurrentUserContext.Provider>
   );
 }
