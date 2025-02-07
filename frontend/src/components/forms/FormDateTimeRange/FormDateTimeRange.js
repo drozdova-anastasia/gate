@@ -1,13 +1,11 @@
 import { useEffect, useState, useRef } from 'react';
 
-import './DateTimeRangeForm.css';
+import './FormDateTimeRange.css';
 import { COL_6, COL_12, EMPTY } from '../../../constants/css';
 
 import Button from '../Button/Button';
-import TextInputForm from '../TextInputForm/TextInputForm';
-import FormCalendar from '../FormCalendar/FormCalendar';
 
-function DateTimeRangeForm ({label, canClear, handleSelect, size}) {
+function FormDateTimeRange ({label, canClear, handleSelect, size}) {
   const [title, setTitle] = useState('');
   const [show, setShow] = useState(false);
   const ref = useRef();
@@ -53,11 +51,10 @@ function DateTimeRangeForm ({label, canClear, handleSelect, size}) {
       {
         show
         && <div className='datetime-range-form__calendar'>
-          <FormCalendar handleClick={(item)=>{}}/>
         </div>
       }
     </label>
   );
 }
 
-export default DateTimeRangeForm;
+export default FormDateTimeRange;

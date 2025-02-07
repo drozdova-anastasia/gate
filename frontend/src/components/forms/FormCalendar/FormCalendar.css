@@ -1,4 +1,4 @@
-.calendar {
+.form-calendar {
   padding: 0;
   margin: 0;
   height: 250px;
@@ -8,7 +8,7 @@
   background-color: white;
 }
 
-.calendar__title {
+.form-calendar__title {
   padding: 0;
   margin: 0;
   height: 36px;
@@ -18,14 +18,14 @@
   border-bottom: 1px solid grey;
 }
 
-.calendar__left-arrow {
+.form-calendar__left-arrow {
   padding: 0;
   margin: 0;
   width: 30px;
   text-align: center;
 }
 
-.calendar__month-year {
+.form-calendar__month-year {
   padding: 0;
   margin: 0;
   width: 140px;
@@ -33,28 +33,28 @@
   vertical-align: middle;
 }
 
-.calendar__down-arrow {
+.form-calendar__down-arrow {
   padding: 0;
   margin: 0;
   width: 30px;
   text-align: center;
 }
 
-.calendar__circle {
+.form-calendar__circle {
   padding: 0;
   margin: 0;
   width: 20px;
   text-align: center;
 }
 
-.calendar__right-arrow {
+.form-calendar__right-arrow {
   padding: 0;
   margin: 0;
   width: 30px;
   text-align: center;
 }
 
-.calendar__years {
+.form-calendar__years {
   padding: 0;
   margin: 0;
   height: 160px;
@@ -68,12 +68,12 @@
   border: 1px solid grey;
 }
 
-.calendar__year {
+.form-calendar__year {
   padding: 5px;
   margin: 0;
 }
 
-.calendar__table {
+.form-calendar__table {
   padding: 0 24px;
   margin: 0;
   height: calc(100% - 36px);
@@ -84,13 +84,13 @@
   flex-direction: column;
 }
 
-.calendar__table-thead {
+.form-calendar__table-thead {
   padding: 0;
   margin: 0;
   width: 100%;
 }
 
-.calendar__table-header {
+.form-calendar__table-header {
   padding: 0 0 5.5px 0;
   margin: 0;
   display: flex;
@@ -98,13 +98,13 @@
   justify-content: space-between;
 }
 
-.calendar__table-week-day {
+.form-calendar__table-week-day {
   padding: 0;
   margin: 0;
   color: grey;
 }
 
-.calendar__table-body {
+.form-calendar__table-body {
   padding: 0;
   margin: 0;
   width: 100%;
@@ -112,28 +112,28 @@
   flex-direction: column;
 }
 
-.calendar__table-row {
+.form-calendar__table-row {
   padding: 0;
   margin: 0;
   display: flex;
   width: 100%;
 }
 
-.calendar__table-day {
+.form-calendar__table-day {
   padding: 4.5px 0;
   margin: 0;
   width: calc(100%/7);
   border-radius: 50%;
 }
 
-.calendar__table-day_selected {
+.form-calendar__table-day_selected {
   background-color: lightblue;
 }
 
-.calendar__table-day_today {
+.form-calendar__table-day_today {
   border: 1px solid grey;
 }
 
-.calendar__table-day_not-current {
+.form-calendar__table-day_not-current {
   color: grey;
 }

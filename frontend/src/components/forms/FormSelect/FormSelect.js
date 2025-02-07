@@ -55,37 +55,37 @@ function FormSelect ({
 
 
   return (
-    <div className={`select-input${size && ` ${size}`}`}
+    <div className={`form-select${size && ` ${size}`}`}
          ref={ref}>
-      <label className='base-text select-input__label'>{label}</label>
+      <label className='base-text form-select__label'>{label}</label>
       <input ref={inputRef}
-             className='base-text select-input__input'
+             className='base-text form-select__input'
              onChange={handleSelect}
              name={name}
              id={name}
              value={value}/>
-      <div className='clickable select-input__display'
+      <div className='clickable form-select__display'
            onClick={() => setShow(!show)}>
-        <p className={`base-text select-input__${!value ? 'placeholder' : 'title'}`}
+        <p className={`base-text form-select__${!value ? 'placeholder' : 'title'}`}
            onClick={() => setShow(!show)}>{!value ? placeholder : getTitleByOptions(value, choices)}</p>
       </div>
       {
         canClear && inputRef.current?.defaultValue &&
-        <span className='clickable select-input__cancel'
+        <span className='clickable form-select__cancel'
               onClick={handleCancel}>✕</span>
       }
-      <span className='clickable select-input__arrow'
+      <span className='clickable form-select__arrow'
             onClick={() => setShow(!show)}>▾</span>
       {
         show &&
-        <div className='select-input__window'>
-          <input className='base-text select-input__window-input'
+        <div className='form-select__window'>
+          <input className='base-text form-select__window-input'
                  placeholder='Search...'
                  onChange={handleChange}/> 
-          <ul className='select-input__items'>
+          <ul className='form-select__items'>
            {
               selectedItems.map((item, index) => 
-                <li className='clickable base-text select-input__item'
+                <li className='clickable base-text form-select__item'
                     key={index}
                     onClick={() => handleSelectItem(item)}>{item.title}</li>
               )

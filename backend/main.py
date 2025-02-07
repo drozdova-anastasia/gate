@@ -29,9 +29,9 @@ def user_list():
                 ),
                 users
             ))
-        elif key == 'lastLogin':
+        elif key in ('lastLogin', 'updated'):
             users = list(filter(
-                lambda item: value in item.get('lastLogin', ''),
+                lambda item: value in item.get(key, ''),
                 users
             ))
         elif key == 'isActive':

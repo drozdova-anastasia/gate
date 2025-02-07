@@ -2,18 +2,15 @@ import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
 import './UserList.css';
-import { IS_ACTIVE_TYPES, KEYS } from './constants';
+import { KEYS } from './constants';
 import { USER_LIST_ROUTE, USER_CREATE_ROUTE } from '../../../constants/urls';
 import { COL_3 } from '../../../constants/css';
 
 import CustomTable from '../../shared/CustomTable/CustomTable';
-import Header from '../../shared/Header/Header';
 import Button from '../../forms/Button/Button';
-import ClearButton from '../../forms/ClearButton/ClearButton';
+import Header from '../../shared/Header/Header';
 import Row from '../../forms/Row/Row';
-import FormTextInput from '../../forms/FormTextInput/FormTextInput';
-import FormSelect from '../../forms/FormSelect/FormSelect';
-import FormDate from '../../forms/FormDate/FormDate';
+import UserListFilter from '../UserListFilter/UserListFilter';
 
 function UserList ({
   userList,
@@ -22,17 +19,10 @@ function UserList ({
   blockUser,
   unblockUser
 }) {
-  const initialValue = {
-    'search': '',
-    'isActive': '',
-    'organization': '',
-    'lastLogin': ''
-  };
   const navigate = useNavigate();
   const [selectedList, setSelectedList] = useState([]);
   const [canBlock, setCanBlock] = useState(false);
   const [canUnblock, setCanUnblock] = useState(false);
-  const [form, setForm] = useState(initialValue);
 
   useEffect(
     () => {
@@ -49,8 +39,6 @@ function UserList ({
   );
 
   useEffect(() => setSelectedList([]), [userList]);
-
-  useEffect(() => getUserList(form), [form]);
 
   function handleDoubleClick(user) {
     navigate(`${USER_LIST_ROUTE}/${user.id}`);
@@ -77,52 +65,11 @@ function UserList ({
     selectedList.forEach(item => unblockUser(item.id, refresh));
   }
 
-  function reset(event) {
-    event.preventDefault();
-    update(initialValue);
-  }
-
-  function update(updates) {
-    setForm({...form, ...updates});
-  }
-
   return (
     <main className='user-list'>
       <Header/>
-      <form className='user-list__form'>
-        <Row>
-          <FormTextInput label='Search'
-                         size={COL_3}
-                         placeholder='FIO|Login|SNILS'
-                         name='search'
-                         value={form['search']}
-                         handleChange={(event) => update({search: event.target.value})}/>
-          <FormSelect label='Organization'
-                      size={COL_3}
-                      choices={organizations}
-                      canClear={true}
-                      name='organization'
-                      value={form['organization']}
-                      handleSelect={(value) => update({organization: value})}/>
-          <FormDate size={COL_3}
-                    label='Last login'
-                    name='lastLogin'
-                    value={form['lastLogin']}
-                    handleChange={(value) => update({lastLogin: value})}/>
-        </Row>
-        <Row>
-          <FormSelect choices={IS_ACTIVE_TYPES}
-                      size={COL_3}
-                      canClear={true}
-                      placeholder='Is active'
-                      name='isActive'
-                      value={form['isActive']}
-                      handleSelect={(value) => update({isActive: value})}/>
-          <ClearButton size={COL_3}
-                       handleClick={reset}
-                       name='Clear filters'/>
-        </Row>
-      </form>
+      <UserListFilter getUserList={getUserList}
+                      organizations={organizations}/>
       <Row>
         <Button size={COL_3}
                 handleClick={() => navigate(USER_CREATE_ROUTE)}

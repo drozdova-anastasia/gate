@@ -46,13 +46,15 @@ function FormDate ({ label, handleChange, size, name, value }) {
              id={name}
              value={value}
              maxLength={10}
+             placeholder='____-__-__'
              onClick={() => setShow(!show)}/>
       <span className='clickable form-date__arrow'
             onClick={() => setShow(!show)}>▾</span>
       {
         show &&
         <div className='form-date__window'>
-          <FormCalendar handleClick={handleClick} value={value}/>
+          <FormCalendar handleClick={handleClick}
+                        value={value}/>
         </div>
       }
     </div>

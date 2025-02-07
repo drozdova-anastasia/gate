@@ -1,22 +1,6 @@
 import { formatFio, formatDateToSave } from '../../../utils/functools';
 import { DATETIME_FORMAT } from '../../../constants/calendar';
 
-export const IS_ACTIVE_TYPES = [
-  {
-    title: 'Yes',
-    value: 'true'
-  },
-  {
-    title: 'No',
-    value: 'false'
-  }
-];
-
-export const IS_ACTIVE_TYPES_ = {
-  true: 'Yes',
-  false: 'No',
-};
-
 const ROLE_TYPES = {
   admin: 'admin1',
   agent: 'agent1',

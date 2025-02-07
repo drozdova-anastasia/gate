@@ -10,13 +10,13 @@ function FormTextInput ({
   value
 }) {
   return (
-    <div className={`text-input${ size && ` ${size}`}`}>
-      <label className={`base-text text-input__label${ellipsis && ' text-input__label_ellipsis'}`}
+    <div className={`form-text-input${ size && ` ${size}`}`}>
+      <label className={`base-text form-text-input__label${ellipsis && ' form-text-input__label_ellipsis'}`}
              htmlFor={name}>{label}</label>
       <input type='text'
              id={name}
              name={name}
-             className='text-input__input'
+             className='form-text-input__input'
              placeholder={placeholder}
              onChange={handleChange}
              value={value}/>

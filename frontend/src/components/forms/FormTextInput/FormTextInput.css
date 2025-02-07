@@ -1,4 +1,4 @@
-.text-input {
+.form-text-input {
   margin: 0;
   padding: 0;
   width: 100%;
@@ -6,23 +6,23 @@
   flex-direction: column;
 }
 
-.text-input__label {
+.form-text-input__label {
   margin: 0;
   padding: 0;
 }
 
-.text-input__label_ellipsis {
+.form-text-input__label_ellipsis {
   text-overflow: ellipsis;
 }
 
-.text-input__input {
+.form-text-input__input {
   margin: 0;
   padding: 0 7.5px;
   border: 1px solid grey;
   height: 36px;
 }
 
-.text-input__input:focus {
+.form-text-input__input:focus {
   outline: none;
   border: 1px solid lightblue;
 }

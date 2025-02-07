@@ -17,18 +17,18 @@ function FormCalendar ({ handleClick, value }) {
   }, []);
 
   function getDayClassName(item) {
-    let className = 'clickable calendar__table-day';
+    let className = 'clickable form-calendar__table-day';
     if (calendar.compareDates(item, day)) {
-      className = `${className} calendar__table-day_selected`;
+      className = `${className} form-calendar__table-day_selected`;
     }
     if (calendar.compareDates(item, calendar.today)) {
-      className = `${className} calendar__table-day_today`;
+      className = `${className} form-calendar__table-day_today`;
     }
     if (
       item.month() !== calendar.currentMonth
       || item.year() !== calendar.currentYear
     ) {
-      className = `${className} calendar__table-day_not-current`;
+      className = `${className} form-calendar__table-day_not-current`;
     }
     return className;
   }
@@ -70,23 +70,23 @@ function FormCalendar ({ handleClick, value }) {
 
   return (
   <>{
-    calendar && <div className='calendar'>
-      <div className='calendar__title'>
-        <span className='clickable calendar__left-arrow'
+    calendar && <div className='form-calendar'>
+      <div className='form-calendar__title'>
+        <span className='clickable form-calendar__left-arrow'
               onClick={handleLeftArrowClick}>◂</span>
-        <p className='clickable calendar__month-year'>{ calendar.currentDisplay }</p>
-        <span className='clickable calendar__down-arrow'
+        <p className='clickable form-calendar__month-year'>{ calendar.currentDisplay }</p>
+        <span className='clickable form-calendar__down-arrow'
               onClick={() => setShowYears(!showYears)}>▾</span>
-        <span className='clickable calendar__circle'
+        <span className='clickable form-calendar__circle'
               onClick={handleCircleClick}>⏺︎</span>
-        <span className='clickable calendar__right-arrow'
+        <span className='clickable form-calendar__right-arrow'
               onClick={handleRightArrowClick}>▸</span>
         {
           showYears &&
-          <ul className='calendar__years'>
+          <ul className='form-calendar__years'>
             {
               calendar.years.map((item, index) => 
-                <li className='clickable calendar__year'
+                <li className='clickable form-calendar__year'
                      onClick={handleSelectYearClick}
                      key ={index}>{ item }</li>
               )
@@ -94,21 +94,21 @@ function FormCalendar ({ handleClick, value }) {
           </ul>
         }
       </div>
-      <table className='calendar__table'>
-        <thead className='calendar__table-thead'>
-          <tr className='calendar__table-header'>
+      <table className='form-calendar__table'>
+        <thead className='form-calendar__table-thead'>
+          <tr className='form-calendar__table-header'>
             {
               WEEK_DAYS.map((item, index) => 
-                <td className='calendar__table-week-day'
+                <td className='form-calendar__table-week-day'
                     key={index}>{ item }</td>
               )
             }
           </tr>
         </thead>
-        <tbody className='calendar__table-body'>
+        <tbody className='form-calendar__table-body'>
           {
             calendar.dayRange.map((week, index) =>
-              <tr className='calendar__table-row'
+              <tr className='form-calendar__table-row'
                   key={index}>{ getTableRow(week) }</tr>
             )
           }
