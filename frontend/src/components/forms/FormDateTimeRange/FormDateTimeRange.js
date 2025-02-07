@@ -1,14 +1,15 @@
 import { useEffect, useState, useRef } from 'react';
 
 import './FormDateTimeRange.css';
-import { COL_6, COL_12, EMPTY } from '../../../constants/css';
 
 import Button from '../Button/Button';
+import FormDateTime from '../FormDateTime/FormDateTime';
 
-function FormDateTimeRange ({label, canClear, handleSelect, size}) {
-  const [title, setTitle] = useState('');
+
+function FormDateTimeRange ({ label, handleChangeValue, size, name, value }) {
   const [show, setShow] = useState(false);
   const ref = useRef();
+  const inputRef = useRef();
 
   useEffect(() => {
 
@@ -28,32 +29,39 @@ function FormDateTimeRange ({label, canClear, handleSelect, size}) {
 
   function handleCancel(event) {
     event.stopPropagation();
-    setTitle('');
-    handleSelect(null);
+    handleChangeValue('');
   }
 
   return (
-    <label className={`datetime-range-form${size ? ` ${size}` : ''}`}
-           ref={ref}>{label}
-      <div className='clickable datetime-range-form__select'
-           onClick={() => setShow(!show)}>
-        {
-          title
-          && <div className='date-time-form__title'>{title}</div>
-        }
-        {
-          (canClear && title)
-          && <span className='date-time-form__cancel'
-                   onClick={handleCancel}>✕</span>
-        }
-        <span className='date-time-form__arrow'>▾</span>
-      </div>
+    <div className={`form-datetime-range${size ? ` ${size}` : ''}`}
+         ref={ref}>
+      <label className='base-text form-datetime-range__label'
+             htmlFor={name}>{label}</label>
+      <input ref={inputRef}
+             className='clickable base-text form-datetime-range__input'
+             onChange={handleChangeValue}
+             name={name}
+             id={name}
+             value={value}
+             onClick={() => setShow(!show)}
+             readOnly/>
       {
-        show
-        && <div className='datetime-range-form__calendar'>
+        inputRef.current?.defaultValue &&
+        <span className='clickable form-datetime-range__cancel'
+              onClick={handleCancel}>✕</span>
+      }
+      <span className='clickable form-datetime-range__arrow'
+            onClick={() => setShow(!show)}>▾</span>
+      {
+        show &&
+        <div className='form-datetime-range__window'>
+          <FormDateTime/>
+          <FormDateTime/>
+          <Button handleClick={() => {}}
+                  name='Confirm'/>
         </div>
       }
-    </label>
+    </div>
   );
 }
 

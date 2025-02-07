@@ -41,14 +41,12 @@ function UserListFilter ({ getUserList, organizations }) {
                   label='Last login'
                   name='lastLogin'
                   value={form['lastLogin']}
-                  addTime={false}
                   handleChange={(value) => update({lastLogin: value})}/>
-        <FormDateTime size={COL_3}
-                      label='Updated'
-                      name='updated'
-                      value={form['updated']}
-                      addTime={true}
-                      handleChange={(value) => update({updated: value})}/>
+        <FormDateTimeRange size={COL_3}
+                           label='Updated'
+                           name='updated'
+                           value={form['updated']}
+                           handleChangeValue={(value) => update({updated: value})}/>
       </Row>
       <Row>
         <FormSelect choices={IS_ACTIVE_TYPES}
@@ -58,11 +56,7 @@ function UserListFilter ({ getUserList, organizations }) {
                     name='isActive'
                     value={form['isActive']}
                     handleSelect={(value) => update({isActive: value})}/>
-        <FormDateTimeRange size={COL_3}
-                      name='updated'
-                      value={form['updated']}
-                      addTime={true}
-                      handleChange={(value) => update({updated: value})}/>
+        
         <ClearButton size={COL_3}
                      handleClick={() => update(INITIAL_VALUE)}
                      name='Clear filters'/>

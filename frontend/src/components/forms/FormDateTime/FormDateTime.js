@@ -36,9 +36,10 @@ function FormDateTime ({ label, handleChange, size, name, value }) {
   }
 
   return (
-    <div className={`form-date-time${size && ` ${size}`}`}
+    <div className={`form-date-time${size ? ` ${size}` : ''}`}
          ref={ref}>
-      <label className='base-text form-date-time__label'>{label}</label>
+      <label className='base-text form-date-time__label'
+             htmlFor={name}>{label}</label>
       <div className='form-date-time__input-block'>
         <input ref={inputRef}
                className='clickable base-text form-date-time__date-input'

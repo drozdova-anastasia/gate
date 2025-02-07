@@ -2,7 +2,7 @@
   margin: 0;
   padding: 0;
   position: absolute;
-  z-index: 2;
+  z-index: 1;
   left: 21px;
   color: red;
   font-weight: 900;

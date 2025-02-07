@@ -8,7 +8,7 @@ function Button ({ name, handleClick, children, size }) {
   }
 
   return (
-    <div className={`base-text button${size && ` ${size}`}`}>
+    <div className={`base-text button${size ? ` ${size}` : ''}`}>
       <button className='clickable base-text button__key'
               onClick={handleClickButton}>{name}</button>
       {children}

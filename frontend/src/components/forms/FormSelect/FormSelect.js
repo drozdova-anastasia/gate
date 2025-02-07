@@ -55,9 +55,10 @@ function FormSelect ({
 
 
   return (
-    <div className={`form-select${size && ` ${size}`}`}
+    <div className={`form-select${size ? ` ${size}` : ''}`}
          ref={ref}>
-      <label className='base-text form-select__label'>{label}</label>
+      <label className='base-text form-select__label'
+             htmlFor={name}>{label}</label>
       <input ref={inputRef}
              className='base-text form-select__input'
              onChange={handleSelect}

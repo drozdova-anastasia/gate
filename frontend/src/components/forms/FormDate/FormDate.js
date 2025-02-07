@@ -36,9 +36,10 @@ function FormDate ({ label, handleChange, size, name, value }) {
   }
 
   return (
-    <div className={`form-date${size && ` ${size}`}`}
+    <div className={`form-date${size ? ` ${size}` : ''}`}
          ref={ref}>
-      <label className='base-text form-date__label'>{label}</label>
+      <label className='base-text form-date__label'
+             htmlFor={name}>{label}</label>
       <input ref={inputRef}
              className='clickable base-text form-date__input'
              onChange={handleChangeValue}

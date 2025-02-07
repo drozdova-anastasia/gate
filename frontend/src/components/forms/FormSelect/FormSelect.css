@@ -73,7 +73,7 @@
 .form-select__window {
   margin: 0;
   padding: 5px;
-  border: 1px solid  grey;
+  border: 1px solid grey;
   width: calc(100% - 10px - 2px);
   height: 250px;
   position: absolute;
