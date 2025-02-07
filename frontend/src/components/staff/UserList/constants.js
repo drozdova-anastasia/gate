@@ -1,6 +1,5 @@
 import { formatFio, formatDateToSave } from '../../../utils/functools';
-
-export const DATETIME_FORMAT = 'DD.MM.YYYY в HH:mm:ss';
+import { DATETIME_FORMAT } from '../../../constants/calendar';
 
 export const IS_ACTIVE_TYPES = [
   {

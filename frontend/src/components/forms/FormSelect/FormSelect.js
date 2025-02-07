@@ -1,9 +1,9 @@
 import { useEffect, useState, useRef } from 'react';
 
-import './SelectForm.css';
+import './FormSelect.css';
 import { getTitleByOptions } from '../../../utils/functools';
 
-function SelectForm ({
+function FormSelect ({
   label,
   choices,
   canClear,
@@ -97,4 +97,4 @@ function SelectForm ({
   );
 }
 
-export default SelectForm;
+export default FormSelect;

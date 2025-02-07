@@ -21,15 +21,16 @@ export class Api {
     if (body) {
       data.body = JSON.stringify(body);
     }
+    const _params = {};
     if (params) {
       Object.keys(params).forEach(item => {
-        if (!params[item]) {
-          delete params[item];
+        if (params[item]) {
+          _params[item] = params[item];
         }
       });
     }
     return fetch(
-      `${this._baseUrl}/${url}?${new URLSearchParams(params || {})}`,
+      `${this._baseUrl}/${url}?${new URLSearchParams(_params)}`,
        data
     ).then(res => {
       return res.ok

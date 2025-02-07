@@ -1,6 +1,6 @@
-import './TextInputForm.css';
+import './FormTextInput.css';
 
-function TextInputForm ({
+function FormTextInput ({
   label,
   handleChange,
   placeholder,
@@ -24,4 +24,4 @@ function TextInputForm ({
   );
 }
 
-export default TextInputForm;
+export default FormTextInput;

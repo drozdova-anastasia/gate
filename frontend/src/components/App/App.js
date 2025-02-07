@@ -28,7 +28,9 @@ function App() {
   }, []);
 
   function getUserList(filters) {
-    api.getUserList(filters).then(userList => setUserList(userList));
+    api.getUserList(filters).then(userList => {
+      setUserList(userList);
+    });
   }
 
   async function reloadPageData() {

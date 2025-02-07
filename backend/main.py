@@ -18,12 +18,25 @@ def user_list():
     for key, value in request.args.to_dict().items():
         if key == 'search':
             users = list(filter(
-                lambda item: value in str(item['username']),
+                lambda item: value in item['username'],
                 users
             ))
-        else:
+        elif key == 'organization':
             users = list(filter(
-                lambda item: str(item.get(key)) == value,
+                lambda item: (
+                    item.get('organization')
+                    and str(value) == str(item['organization']['id'])
+                ),
+                users
+            ))
+        elif key == 'lastLogin':
+            users = list(filter(
+                lambda item: value in item.get('lastLogin', ''),
+                users
+            ))
+        elif key == 'isActive':
+            users = list(filter(
+                lambda item: bool(value) == bool(item.get(key)),
                 users
             ))
     return users

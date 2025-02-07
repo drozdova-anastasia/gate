@@ -7,8 +7,14 @@ export default class Calendar {
   years = numberRange(1900, moment().year() + 1).reverse();
 
   constructor(date) {
-    this.today =  date || moment();
-    this.reloadCurrent(this.today);
+    if (!date) {
+      this.current =  moment();
+    } else {
+      const current =  moment(date, DATE_FORMAT, true);
+      this.current =  current.isValid() ? current : moment();
+    }
+    this.today =  moment();
+    this.reload(this.current);
   }
 
   compareDates(first, second) {
@@ -19,7 +25,11 @@ export default class Calendar {
     return moment(`${year}-${month + 1}-01`, DATE_FORMAT);
   }
 
-  reloadCurrent(data) {
+  reloadToFirstDay(year, month) {
+    this.reload(this.getFirstDay(year, month));
+  }
+
+  reload(data) {
     this.currentMonth = data.month();
     this.currentYear = data.year();
     this.currentDisplay = `${MONTHS[this.currentMonth]}, ${this.currentYear}`;

@@ -10,17 +10,11 @@ function FormCalendar ({ handleClick, value }) {
   const [showYears, setShowYears] = useState(false);
   const [day, setDay] = useState(null);
 
-  useEffect(() => setCalendar(new Calendar()), []);
-
-  //useEffect(
-  //  () => {
-  //    if (calendar) {
-  //      calendar.reloadCurrent(calendar.fromDate(value));
-  //      forceUpdate();
-  //    }
-  //  },
-   // [value]
-  //);
+  useEffect(() => {
+    const _calendar = new Calendar(value);
+    setCalendar(_calendar);
+    setDay(_calendar.current);
+  }, []);
 
   function getDayClassName(item) {
     let className = 'clickable calendar__table-day';
@@ -47,27 +41,26 @@ function FormCalendar ({ handleClick, value }) {
     );
   }
 
-  function reloadCurrent(year, month) {
-    calendar.reloadCurrent(calendar.getFirstDay(year, month));
+  function reload(year, month) {
+    calendar.reloadToFirstDay(year, month);
     forceUpdate();
   }
 
   function handleSelectYearClick(event) {
-    reloadCurrent(event.target.textContent, calendar.currentMonth);
+    reload(event.target.textContent, calendar.currentMonth);
     setShowYears(false);
   }
 
   function handleLeftArrowClick() {
-    reloadCurrent(calendar.prevYear, calendar.prevMonth);
+    reload(calendar.prevYear, calendar.prevMonth);
   }
 
   function handleRightArrowClick() {
-    reloadCurrent(calendar.nextYear, calendar.nextMonth);
+    reload(calendar.nextYear, calendar.nextMonth);
   }
 
   function handleCircleClick() {
-    reloadCurrent(calendar.today.year(), calendar.today.month());
-    setDay(calendar.today);
+    reload(calendar.today.year(), calendar.today.month());
   }
 
   function handleSelectDayClick(day) {

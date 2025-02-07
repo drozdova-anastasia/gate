@@ -11,8 +11,8 @@ import Header from '../../shared/Header/Header';
 import Button from '../../forms/Button/Button';
 import ClearButton from '../../forms/ClearButton/ClearButton';
 import Row from '../../forms/Row/Row';
-import TextInputForm from '../../forms/TextInputForm/TextInputForm';
-import SelectForm from '../../forms/SelectForm/SelectForm';
+import FormTextInput from '../../forms/FormTextInput/FormTextInput';
+import FormSelect from '../../forms/FormSelect/FormSelect';
 import FormDate from '../../forms/FormDate/FormDate';
 
 function UserList ({
@@ -27,7 +27,7 @@ function UserList ({
     'isActive': '',
     'organization': '',
     'lastLogin': ''
-  }
+  };
   const navigate = useNavigate();
   const [selectedList, setSelectedList] = useState([]);
   const [canBlock, setCanBlock] = useState(false);
@@ -91,13 +91,13 @@ function UserList ({
       <Header/>
       <form className='user-list__form'>
         <Row>
-          <TextInputForm label='Search'
+          <FormTextInput label='Search'
                          size={COL_3}
                          placeholder='FIO|Login|SNILS'
                          name='search'
                          value={form['search']}
                          handleChange={(event) => update({search: event.target.value})}/>
-          <SelectForm label='Organization'
+          <FormSelect label='Organization'
                       size={COL_3}
                       choices={organizations}
                       canClear={true}
@@ -111,7 +111,7 @@ function UserList ({
                     handleChange={(value) => update({lastLogin: value})}/>
         </Row>
         <Row>
-          <SelectForm choices={IS_ACTIVE_TYPES}
+          <FormSelect choices={IS_ACTIVE_TYPES}
                       size={COL_3}
                       canClear={true}
                       placeholder='Is active'
@@ -127,18 +127,24 @@ function UserList ({
         <Button size={COL_3}
                 handleClick={() => navigate(USER_CREATE_ROUTE)}
                 name='Add'/>
-        <Button size={COL_3}
-                handleClick={edit}
-                name='Edit'
-                display={selectedList.length === 1}/>
-        <Button size={COL_3}
-                handleClick={block}
-                name='Block'
-                display={canBlock}/>
-        <Button size={COL_3}
-                handleClick={unblock}
-                name='Unblock'
-                display={canUnblock}/>
+        {
+          selectedList.length === 1 && 
+          <Button size={COL_3}
+                  handleClick={edit}
+                  name='Edit'/>
+        }
+        {
+          canBlock && 
+          <Button size={COL_3}
+                  handleClick={block}
+                  name='Block'/>
+        }
+        {
+          canUnblock &&
+          <Button size={COL_3}
+                  handleClick={unblock}
+                  name='Unblock'/>
+        }
       </Row>
       <CustomTable items={userList}
                    headers={KEYS}
