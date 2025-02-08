@@ -16,11 +16,14 @@ function FormDateTime ({ label, handleChange, size, name, value }) {
 
   useEffect(() => handleClosePopup(ref, () => setShow(false)), []);
 
-  useEffect(() => setDateTimeObj(new DateTime(
-    setDate,
-    setTime,
-    handleChange
-  )), []);
+  useEffect(
+    () => {
+     const dateTimeObj = new DateTime(setDate, setTime, handleChange);
+     setDateTimeObj(dateTimeObj);
+     dateTimeObj.applyDateTime(value);
+    },
+    []
+  );
 
   useEffect(() => dateTimeObj?.applyDateTime(value), [value]);
 

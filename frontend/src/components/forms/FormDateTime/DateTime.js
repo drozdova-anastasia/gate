@@ -26,11 +26,7 @@ export default class DateTime {
     if (value === this.dateTime) {
       return;
     }
-    if (!value) {
-      this.setDate('');
-      this.setTime('');
-    }
-    const splitted = value.split('T');
+    const splitted = (value || '').split('T');
     if (splitted.length === 0) {
       this.setDate('');
       this.setTime('');

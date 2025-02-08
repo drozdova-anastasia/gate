@@ -5,7 +5,6 @@ import { INITIAL_VALUE, IS_ACTIVE_TYPES } from './constants';
 import { COL_3 } from '../../../constants/css';
 
 import ClearButton from '../../forms/ClearButton/ClearButton';
-import FormDate from '../../forms/FormDate/FormDate';
 import FormSelect from '../../forms/FormSelect/FormSelect';
 import FormTextInput from '../../forms/FormTextInput/FormTextInput';
 import FormDateTime from '../../forms/FormDateTime/FormDateTime';
@@ -37,16 +36,18 @@ function UserListFilter ({ getUserList, organizations }) {
                     name='organization'
                     value={form['organization']}
                     handleSelect={(value) => update({organization: value})}/>
-        <FormDateTime size={COL_3}
-                  label='Last login'
-                  name='lastLogin'
-                  value={form['lastLogin']}
-                  handleChange={(value) => update({lastLogin: value})}/>
+        <FormDateTimeRange size={COL_3}
+                           label='Last login'
+                           fromName='lastLoginFrom'
+                           toName='lastLoginTo'
+                           setForm={setForm}
+                           form={form}/>
         <FormDateTimeRange size={COL_3}
                            label='Updated'
-                           name='updated'
-                           value={form['updated']}
-                           handleChangeValue={(value) => update({updated: value})}/>
+                           fromName='updatedFrom'
+                           toName='updatedTo'
+                           setForm={setForm}
+                           form={form}/>
       </Row>
       <Row>
         <FormSelect choices={IS_ACTIVE_TYPES}

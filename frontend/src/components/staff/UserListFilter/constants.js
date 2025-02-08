@@ -2,12 +2,12 @@ export const INITIAL_VALUE = {
   'search': '',
   'isActive': '',
   'organization': '',
-  'lastLogin': '',
-  'updated': '',
+  'serviceName': '',
+  'permission': '',
+  'lastLoginFrom': '',
+  'lastLoginTo': '',
   'updatedFrom': '',
   'updatedTo': '',
-  'updatedDate': '',
-  'updatedTime': ''
 };
 
 export const IS_ACTIVE_TYPES = [
