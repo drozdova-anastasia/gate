@@ -1,29 +1,21 @@
 import { useEffect, useState, useRef } from 'react';
 
 import './FormDate.css';
+import Mask from '../../../utils/Mask';
+import { handleClosePopup } from '../../../utils/functools';
+import { DATE_MASK, NUMBER_REG_EXP } from '../../../constants/mask';
 
 import FormCalendar from '../FormCalendar/FormCalendar';
 
 function FormDate ({ label, handleChange, size, name, value }) {
+  const [mask, setMask] = useState(null);
   const [show, setShow] = useState(false);
   const ref = useRef();
   const inputRef = useRef();
 
-  useEffect(() => {
+  useEffect(() => handleClosePopup(ref, () => setShow(false)), []);
 
-    function handleClose(event) {
-      if (!ref.current.contains(event.target)) {
-        setShow(false);
-      }
-    }
-
-    window.addEventListener('click', handleClose, {capture: true});
-    return () => window.removeEventListener(
-      'click',
-      handleClose,
-      {capture: true}
-    );
-  }, []);
+  useEffect(() => setMask(new Mask(NUMBER_REG_EXP, DATE_MASK)), []);
 
   function handleClick(value) {
     setShow(false);
@@ -32,7 +24,7 @@ function FormDate ({ label, handleChange, size, name, value }) {
 
   function handleChangeValue(event) {
     setShow(false);
-    handleChange(event.target.value);
+    mask.apply(event.target.value, handleChange);
   }
 
   return (
@@ -46,7 +38,6 @@ function FormDate ({ label, handleChange, size, name, value }) {
              name={name}
              id={name}
              value={value}
-             maxLength={10}
              placeholder='____-__-__'
              onClick={() => setShow(!show)}/>
       <span className='clickable form-date__arrow'

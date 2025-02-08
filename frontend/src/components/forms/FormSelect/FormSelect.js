@@ -2,6 +2,7 @@ import { useEffect, useState, useRef } from 'react';
 
 import './FormSelect.css';
 import { getTitleByOptions } from '../../../utils/functools';
+import { handleClosePopup } from '../../../utils/functools';
 
 function FormSelect ({
   label,
@@ -18,21 +19,7 @@ function FormSelect ({
   const ref = useRef();
   const inputRef = useRef();
 
-  useEffect(() => {
-
-    function handleClose(event) {
-      if (!ref.current.contains(event.target)) {
-        setShow(false);
-      }
-    }
-
-    window.addEventListener('click', handleClose, {capture: true});
-    return () => window.removeEventListener(
-      'click',
-      handleClose,
-      {capture: true}
-    );
-  }, []);
+  useEffect(() => handleClosePopup(ref, () => setShow(false)), []);
 
   function handleChange(event) {
     const value = event.target.value;

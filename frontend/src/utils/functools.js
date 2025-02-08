@@ -54,3 +54,17 @@ export function getValue(item, data) {
 export function numberRange(start, end) {
   return new Array(end - start).fill().map((j, i) => i + start);
 }
+
+export function handleClosePopup(ref, func) {
+  function handleClose(event) {
+    if (!ref.current.contains(event.target)) {
+      func();
+    }
+  }
+  window.addEventListener('click', handleClose, {capture: true});
+  return () => window.removeEventListener(
+    'click',
+    handleClose,
+    {capture: true}
+  );
+}

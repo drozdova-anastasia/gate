@@ -37,7 +37,7 @@ function UserListFilter ({ getUserList, organizations }) {
                     name='organization'
                     value={form['organization']}
                     handleSelect={(value) => update({organization: value})}/>
-        <FormDate size={COL_3}
+        <FormDateTime size={COL_3}
                   label='Last login'
                   name='lastLogin'
                   value={form['lastLogin']}

@@ -4,6 +4,8 @@ export const INITIAL_VALUE = {
   'organization': '',
   'lastLogin': '',
   'updated': '',
+  'updatedFrom': '',
+  'updatedTo': '',
   'updatedDate': '',
   'updatedTime': ''
 };

@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 
 import './UserList.css';
 import { KEYS } from './constants';
-import { USER_LIST_ROUTE, USER_CREATE_ROUTE } from '../../../constants/urls';
+import { USER_LIST_ROUTE, USER_CREATE_ROUTE } from '../../../constants/route';
 import { COL_3 } from '../../../constants/css';
 
 import CustomTable from '../../shared/CustomTable/CustomTable';

@@ -8,7 +8,7 @@ import {
   USER_LIST_ROUTE,
   USER_CREATE_ROUTE,
   ORGANIZATION_LIST_ROUTE
-} from '../../constants/urls';
+} from '../../constants/route';
 import api from '../../utils/Api';
 
 import NotFound from '../NotFound/NotFound';

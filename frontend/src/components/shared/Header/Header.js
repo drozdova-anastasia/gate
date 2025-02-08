@@ -4,7 +4,7 @@ import './Header.css';
 import {
   USER_LIST_ROUTE,
   ORGANIZATION_LIST_ROUTE
-} from '../../../constants/urls';
+} from '../../../constants/route';
 
 function Header () {
   return (

@@ -1,38 +1,41 @@
 import { useEffect, useState, useRef } from 'react';
 
 import './FormDateTime.css';
+import DateTime from './DateTime';
+import { handleClosePopup } from '../../../utils/functools';
 
 import FormCalendar from '../FormCalendar/FormCalendar';
 
 function FormDateTime ({ label, handleChange, size, name, value }) {
+  const [dateTimeObj, setDateTimeObj] = useState(null);
+  const [date, setDate] = useState('');
+  const [time, setTime] = useState('');
   const [show, setShow] = useState(false);
   const ref = useRef();
   const inputRef = useRef();
 
-  useEffect(() => {
+  useEffect(() => handleClosePopup(ref, () => setShow(false)), []);
 
-    function handleClose(event) {
-      if (!ref.current.contains(event.target)) {
-        setShow(false);
-      }
-    }
+  useEffect(() => setDateTimeObj(new DateTime(
+    setDate,
+    setTime,
+    handleChange
+  )), []);
 
-    window.addEventListener('click', handleClose, {capture: true});
-    return () => window.removeEventListener(
-      'click',
-      handleClose,
-      {capture: true}
-    );
-  }, []);
+  useEffect(() => dateTimeObj?.applyDateTime(value), [value]);
 
   function handleClick(value) {
     setShow(false);
-    handleChange(value);
+    dateTimeObj.applyDate(value);
   }
 
-  function handleChangeValue(event) {
+  function handleChangeDate(event) {
     setShow(false);
-    handleChange(event.target.value);
+    dateTimeObj.applyDate(event.target.value);
+  }
+
+  function handleChangeTime(event) {
+    dateTimeObj.applyTime(event.target.value);
   }
 
   return (
@@ -43,19 +46,15 @@ function FormDateTime ({ label, handleChange, size, name, value }) {
       <div className='form-date-time__input-block'>
         <input ref={inputRef}
                className='clickable base-text form-date-time__date-input'
-               onChange={handleChangeValue}
+               onChange={handleChangeDate}
                name={name}
                id={name}
-               value={value}
-               maxLength={10}
+               value={date}
                placeholder='____-__-__'
                onClick={() => setShow(!show)}/>
         <input className='base-text form-date-time__time-input'
-               onChange={handleChangeValue}
-               name={name}
-               id={name}
-               value={value}
-               maxLength={8}
+               onChange={handleChangeTime}
+               value={time}
                placeholder='__:__:__'/>
       </div>
       <span className='clickable form-date-time__arrow'
@@ -64,7 +63,7 @@ function FormDateTime ({ label, handleChange, size, name, value }) {
         show &&
         <div className='form-date-time__window'>
           <FormCalendar handleClick={handleClick}
-                        value={value}/>
+                        value={date}/>
         </div>
       }
     </div>

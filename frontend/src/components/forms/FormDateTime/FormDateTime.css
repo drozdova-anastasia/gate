@@ -41,6 +41,7 @@
 
 .form-date-time__time-input:focus {
   outline: none;
+  border: 1px solid lightblue;
 }
 
 .form-date-time__arrow {
