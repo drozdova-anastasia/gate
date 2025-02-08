@@ -21,6 +21,8 @@ function App() {
   const [userList, setUserList] = useState([]);
   const [userDetail, setUserDetail] = useState({});
   const [organizationList, setOrganizationList] = useState([]);
+  const [permissionList, setPermissionList] = useState([]);
+  const [serviceNameList, setServiceNameList] = useState([]);
   const [isProcess, setIsProcess] = useState(false);
 
   useEffect(() => {
@@ -39,11 +41,21 @@ function App() {
       api.getUserCurrent(),
       api.getUserList({}),
       api.getOrganizationList(),
-    ]).then(([user, userList, organizationList]) => {
+      api.getServiceNameList(),
+      api.getPermissionList(),
+    ]).then(([
+      user,
+      userList,
+      organizationList,
+      serviceNameList,
+      permissionList
+    ]) => {
       setCurrentUser(user);
       setUserList(userList);
       setOrganizationList(organizationList);
       setIsProcess(false);
+      setServiceNameList(serviceNameList);
+      setPermissionList(permissionList);
     });
   }
 
@@ -81,7 +93,9 @@ function App() {
                  element={
                    <UserList userList={userList}
                              getUserList={getUserList}
-                             organizations={organizationList}
+                             organizationList={organizationList}
+                             serviceNameList={serviceNameList}
+                             permissionList={permissionList}
                              blockUser={blockUser}
                              unblockUser={unblockUser}/>
                  }/>

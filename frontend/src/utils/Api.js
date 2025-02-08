@@ -66,6 +66,14 @@ export class Api {
   async getOrganizationList() {
     return this._sendRequest('organization', GET);
   }
+
+  async getPermissionList() {
+    return this._sendRequest('permission-list', GET);
+  }
+
+  async getServiceNameList() {
+    return this._sendRequest('service-name-list', GET);
+  }
 }
 
 const api = new Api({

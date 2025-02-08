@@ -15,9 +15,11 @@ import UserListFilter from '../UserListFilter/UserListFilter';
 function UserList ({
   userList,
   getUserList,
-  organizations,
   blockUser,
-  unblockUser
+  unblockUser,
+  organizationList,
+  serviceNameList,
+  permissionList
 }) {
   const navigate = useNavigate();
   const [selectedList, setSelectedList] = useState([]);
@@ -69,7 +71,9 @@ function UserList ({
     <main className='user-list'>
       <Header/>
       <UserListFilter getUserList={getUserList}
-                      organizations={organizations}/>
+                      organizationList={organizationList}
+                      serviceNameList={serviceNameList}
+                      permissionList={permissionList}/>
       <Row>
         <Button size={COL_3}
                 handleClick={() => navigate(USER_CREATE_ROUTE)}

@@ -7,11 +7,15 @@ import { COL_3 } from '../../../constants/css';
 import ClearButton from '../../forms/ClearButton/ClearButton';
 import FormSelect from '../../forms/FormSelect/FormSelect';
 import FormTextInput from '../../forms/FormTextInput/FormTextInput';
-import FormDateTime from '../../forms/FormDateTime/FormDateTime';
 import FormDateTimeRange from '../../forms/FormDateTimeRange/FormDateTimeRange';
 import Row from '../../forms/Row/Row';
 
-function UserListFilter ({ getUserList, organizations }) {
+function UserListFilter ({
+  getUserList,
+  organizationList,
+  serviceNameList,
+  permissionList
+}) {
   const [form, setForm] = useState(INITIAL_VALUE);
 
   useEffect(() => getUserList(form), [form]);
@@ -31,7 +35,7 @@ function UserListFilter ({ getUserList, organizations }) {
                        handleChange={(event) => update({search: event.target.value})}/>
         <FormSelect label='Organization'
                     size={COL_3}
-                    choices={organizations}
+                    choices={organizationList}
                     canClear={true}
                     name='organization'
                     value={form['organization']}
@@ -57,7 +61,20 @@ function UserListFilter ({ getUserList, organizations }) {
                     name='isActive'
                     value={form['isActive']}
                     handleSelect={(value) => update({isActive: value})}/>
-        
+        <FormSelect choices={serviceNameList}
+                    size={COL_3}
+                    canClear={true}
+                    placeholder='Service name list'
+                    name='serviceName'
+                    value={form['serviceName']}
+                    handleSelect={(value) => update({serviceName: value})}/>
+        <FormSelect choices={permissionList}
+                    size={COL_3}
+                    canClear={true}
+                    placeholder='Permission list'
+                    name='permission'
+                    value={form['permission']}
+                    handleSelect={(value) => update({permission: value})}/>
         <ClearButton size={COL_3}
                      handleClick={() => update(INITIAL_VALUE)}
                      name='Clear filters'/>

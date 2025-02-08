@@ -102,3 +102,23 @@ ORGANIZATIONS = [
         'value': 7
     }
 ]
+PERMISSION_LIST = [
+    {
+        'title': 'Can delete',
+        'value': 'can_delete'
+    },
+    {
+        'title': 'Can resend',
+        'value': 'can_resend'
+    }
+]
+SERVICE_NAME_LIST = [
+    {
+        'title': 'ESIA',
+        'value': 'esia'
+    },
+    {
+        'title': 'MVD',
+        'value': 'mvd'
+    }
+]
