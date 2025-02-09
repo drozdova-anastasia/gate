@@ -2,41 +2,41 @@ import { formatFio, formatDateToSave } from '../../../utils/functools';
 import { DATETIME_FORMAT } from '../../../constants/calendar';
 
 const ROLE_TYPES = {
-  admin: 'admin1',
-  agent: 'agent1',
-  personal: 'personal1',
+  admin: 'Админ',
+  agent: 'Оператор',
+  personal: 'Персонал',
 };
 
 export const KEYS = [
   {
-    label: 'username',
+    label: 'Логин',
     key: 'username',
   },
   {
-    label: 'firstName',
+    label: 'ФИО',
     calcValue: item => formatFio(item)
   },
   {
-    label: 'roleType',
+    label: 'Роль',
     key: 'roleType',
     formatFunc: item => ROLE_TYPES[item] || item
   },
   {
-    label: 'lastLogin',
+    label: 'Дата последнего входа',
     key: 'lastLogin',
     formatFunc: item => formatDateToSave(item, DATETIME_FORMAT)
   },
   {
-    label: 'isActive',
+    label: 'Активная УЗ',
     key: 'isActive',
-    formatFunc: item => item ? 'Yes' : 'No'
+    formatFunc: item => item ? 'Да' : 'Нет'
   },
   {
-    label: 'organization',
+    label: 'Организация',
     key: 'organization.title'
   },
   {
-    label: 'updated',
+    label: 'Дата изменения',
     key: 'updated',
     formatFunc: item => formatDateToSave(item, DATETIME_FORMAT)
   }

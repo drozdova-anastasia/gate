@@ -12,11 +12,11 @@ export const INITIAL_VALUE = {
 
 export const IS_ACTIVE_TYPES = [
   {
-    title: 'Yes',
+    title: 'Да',
     value: 'true'
   },
   {
-    title: 'No',
+    title: 'Нет',
     value: 'false'
   }
 ];

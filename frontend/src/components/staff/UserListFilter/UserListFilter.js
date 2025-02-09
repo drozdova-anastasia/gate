@@ -21,47 +21,47 @@ function UserListFilter ({
   return (
     <form className='user-list-filter'>
       <div className='default__row user-list-filter__row'>
-        <FormTextInput label='Search'
-                       placeholder='FIO|Login|SNILS'
+        <FormTextInput label='Поиск'
+                       placeholder='ФИО|Логин|СНИЛС'
                        name='search'
                        form={form}
                        setForm={setForm}/>
-        <FormSelect label='Organization'
+        <FormSelect label='Организация'
                     choices={organizationList}
                     canClear={true}
                     name='organization'
                     form={form}
                     setForm={setForm}/>
-        <FormDateTimeRange label='Last login'
+        <FormDateTimeRange label='Последний вход'
                            fromName='lastLoginFrom'
                            toName='lastLoginTo'
                            setForm={setForm}
                            form={form}/>
-        <FormDateTimeRange label='Updated'
+        <FormDateTimeRange label='Изменено'
                            fromName='updatedFrom'
                            toName='updatedTo'
                            setForm={setForm}
                            form={form}/>
         <FormSelect choices={IS_ACTIVE_TYPES}
                     canClear={true}
-                    placeholder='Is active'
+                    placeholder='Активная УЗ'
                     name='isActive'
                     form={form}
                     setForm={setForm}/>
         <FormSelect choices={serviceNameList}
                     canClear={true}
-                    placeholder='Service name list'
+                    placeholder='Список сервисов'
                     name='serviceName'
                     form={form}
                     setForm={setForm}/>
         <FormSelect choices={permissionList}
                     canClear={true}
-                    placeholder='Permission list'
+                    placeholder='Список прав'
                     name='permission'
                     form={form}
                     setForm={setForm}/>
         <ClearButton handleClick={() => setForm(INITIAL_VALUE)}
-                     name='Clear filters'/>
+                     name='Сбросить фильтры'/>
       </div>
     </form>
   );

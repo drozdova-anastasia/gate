@@ -74,21 +74,21 @@ function UserList ({
                       permissionList={permissionList}/>
       <div className='default__row user-list__row'>
         <Button handleClick={() => navigate(USER_CREATE_ROUTE)}
-                name='Add'/>
+                name='Добавить пользователя'/>
         {
-          selectedList.length === 1 && 
+          selectedList.length === 1 &&
           <Button handleClick={edit}
-                  name='Edit'/>
+                  name='Редактировать'/>
         }
         {
-          canBlock && 
+          canBlock &&
           <Button handleClick={block}
-                  name='Block'/>
+                  name='Заблокировать'/>
         }
         {
           canUnblock &&
           <Button handleClick={unblock}
-                  name='Unblock'/>
+                  name='Разблокировать'/>
         }
       </div>
       <CustomTable items={userList}

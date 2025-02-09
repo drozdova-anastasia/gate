@@ -20,22 +20,22 @@ USERS = [
     'id': 3,
     'username': 'operator',
     'roleType': 'agent',
-    'lastName': 'lastName',
-    'firstName': 'firstName',
-    'middleName': 'middleName',
+    'lastName': 'Фамилия',
+    'firstName': 'Имя',
+    'middleName': 'Отчество',
     'isActive': True,
     'lastLogin': '2025-01-31T20:55:00.123456Z',
     'updated': '2024-01-29T20:55:00.123456Z',
     'organization': {
       'id': 1,
-      'title': 'title'
+      'title': 'Головная организация'
     }
   },
   {
     'id': 4,
     'username': 'operator2',
     'roleType': 'agent',
-    'lastName': 'lastName',
+    'lastName': 'Фамилия',
     'isActive': False,
     'updated': '2024-01-29T20:55:00.123456Z'
   },
@@ -56,7 +56,7 @@ USERS = [
     'updated': '2024-01-29T20:55:00.123456Z',
     'organization': {
       'id': 1,
-      'title': 'title'
+      'title': 'Организация'
     }
   },
   {
@@ -68,7 +68,7 @@ USERS = [
     'updated': '2024-01-29T20:55:00.123456Z',
     'organization': {
       'id': 1,
-      'title': 'title'
+      'title': 'Головная'
     }
   }
 ]

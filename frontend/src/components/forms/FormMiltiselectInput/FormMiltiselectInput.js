@@ -55,11 +55,11 @@ function FormMiltiselectInput ({
         <label className='base-text form-miltiselect-input__label'
                htmlFor=''>{labelLeft}</label>
         <input className='base-text form-miltiselect-input__input'
-               placeholder='Search...'
-               onChange={() => {}}/> 
+               placeholder='Поиск...'
+               onChange={() => {}}/>
         <ul className='form-miltiselect-input__items'>
           {
-            avaliableList.map((item, index) => 
+            avaliableList.map((item, index) =>
               <li className='clickable base-text form-miltiselect-input__item'
                   key={index}
                   onClick={() => handleSelect(item)}>{handbook[item]}</li>
@@ -67,17 +67,17 @@ function FormMiltiselectInput ({
           }
         </ul>
         <span className='clickable base-text form-miltiselect-input__all-action'
-              onClick={handleSelectAll}>Select all</span>
+              onClick={handleSelectAll}>Выбрать всё</span>
       </div>
       <div className='form-miltiselect-input__block'>
         <label className='base-text form-miltiselect-input__label'
                htmlFor=''>{labelRight}</label>
         <input className='base-text form-miltiselect-input__input'
-               placeholder='Search...'
-               onChange={() => {}}/> 
+               placeholder='Поиск...'
+               onChange={() => {}}/>
         <ul className='form-miltiselect-input__items'>
           {
-            form[name].map((item, index) => 
+            form[name].map((item, index) =>
               <li className='clickable base-text form-miltiselect-input__item'
                   key={index}
                   onClick={() => handleRemove(item)}>{handbook[item]}</li>
@@ -85,7 +85,7 @@ function FormMiltiselectInput ({
           }
         </ul>
         <span className='clickable base-text form-miltiselect-input__all-action'
-              onClick={handleRemoveAll}>Remove all</span>
+              onClick={handleRemoveAll}>Удалить всё</span>
       </div>
     </div>
   );
