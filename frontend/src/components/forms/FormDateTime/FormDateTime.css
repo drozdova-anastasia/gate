@@ -2,7 +2,6 @@
   margin: 0;
   padding: 0;
   width: 100%;
-  position: relative;
   display: flex;
   flex-direction: column;
 }
@@ -16,6 +15,7 @@
   margin: 0;
   padding: 0;
   display: flex;
+  position: relative;
 }
 
 .form-date-time__date-input {

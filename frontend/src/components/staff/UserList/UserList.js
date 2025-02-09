@@ -4,12 +4,10 @@ import { useEffect, useState } from 'react';
 import './UserList.css';
 import { KEYS } from './constants';
 import { USER_LIST_ROUTE, USER_CREATE_ROUTE } from '../../../constants/route';
-import { COL_3 } from '../../../constants/css';
 
 import CustomTable from '../../shared/CustomTable/CustomTable';
 import Button from '../../forms/Button/Button';
 import Header from '../../shared/Header/Header';
-import Row from '../../forms/Row/Row';
 import UserListFilter from '../UserListFilter/UserListFilter';
 
 function UserList ({
@@ -74,29 +72,25 @@ function UserList ({
                       organizationList={organizationList}
                       serviceNameList={serviceNameList}
                       permissionList={permissionList}/>
-      <Row>
-        <Button size={COL_3}
-                handleClick={() => navigate(USER_CREATE_ROUTE)}
+      <div className='default__row user-list__row'>
+        <Button handleClick={() => navigate(USER_CREATE_ROUTE)}
                 name='Add'/>
         {
           selectedList.length === 1 && 
-          <Button size={COL_3}
-                  handleClick={edit}
+          <Button handleClick={edit}
                   name='Edit'/>
         }
         {
           canBlock && 
-          <Button size={COL_3}
-                  handleClick={block}
+          <Button handleClick={block}
                   name='Block'/>
         }
         {
           canUnblock &&
-          <Button size={COL_3}
-                  handleClick={unblock}
+          <Button handleClick={unblock}
                   name='Unblock'/>
         }
-      </Row>
+      </div>
       <CustomTable items={userList}
                    headers={KEYS}
                    handleDoubleClick={handleDoubleClick}

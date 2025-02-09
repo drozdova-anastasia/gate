@@ -1,6 +1,8 @@
+import { NUMBER_REG_EXP } from '../constants/mask';
+
 export default class Mask {
 
-  constructor(regExp, mask) {
+  constructor(mask, regExp = NUMBER_REG_EXP) {
     this.mask = mask;
     this.regExp = RegExp(regExp, 'g');
   }

@@ -86,9 +86,10 @@ function App() {
       <div className='page__container'>{
         !isProcess && <Routes>
           <Route path={USER_DETAIL_ROUTE}
-                 element={<UserCreateDetail handleLoadUser={getUserDetail}/>}/>
+                 element={<UserCreateDetail handleLoadUser={getUserDetail}
+                                            organizationList={organizationList}/>}/>
           <Route path={USER_CREATE_ROUTE}
-                 element={<UserCreateDetail/>}/>
+                 element={<UserCreateDetail organizationList={organizationList}/>}/>
           <Route path={USER_LIST_ROUTE}
                  element={
                    <UserList userList={userList}

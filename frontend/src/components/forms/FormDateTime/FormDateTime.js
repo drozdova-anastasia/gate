@@ -6,7 +6,7 @@ import { handleClosePopup } from '../../../utils/functools';
 
 import FormCalendar from '../FormCalendar/FormCalendar';
 
-function FormDateTime ({ label, handleChange, size, name, value }) {
+function FormDateTime ({ label, handleChange, name, value, errors }) {
   const [dateTimeObj, setDateTimeObj] = useState(null);
   const [date, setDate] = useState('');
   const [time, setTime] = useState('');
@@ -42,7 +42,7 @@ function FormDateTime ({ label, handleChange, size, name, value }) {
   }
 
   return (
-    <div className={`form-date-time${size ? ` ${size}` : ''}`}
+    <div className='form-date-time'
          ref={ref}>
       <label className='base-text form-date-time__label'
              htmlFor={name}>{label}</label>
@@ -59,16 +59,17 @@ function FormDateTime ({ label, handleChange, size, name, value }) {
                onChange={handleChangeTime}
                value={time}
                placeholder='__:__:__'/>
+        <span className='clickable form-date-time__arrow'
+              onClick={() => setShow(!show)}>▾</span>
+        {
+          show &&
+          <div className='form-date-time__window'>
+            <FormCalendar handleClick={handleClick}
+                          value={date}/>
+          </div>
+        }
       </div>
-      <span className='clickable form-date-time__arrow'
-            onClick={() => setShow(!show)}>▾</span>
-      {
-        show &&
-        <div className='form-date-time__window'>
-          <FormCalendar handleClick={handleClick}
-                        value={date}/>
-        </div>
-      }
+      <span className='error-message'>{(errors || []).join(', ')}</span>
     </div>
   );
 }

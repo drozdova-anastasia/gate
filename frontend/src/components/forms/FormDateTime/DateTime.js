@@ -1,11 +1,11 @@
 import Mask from '../../../utils/Mask';
-import { DATE_MASK, NUMBER_REG_EXP, TIME_MASK } from '../../../constants/mask';
+import { DATE_MASK, TIME_MASK } from '../../../constants/mask';
 
 export default class DateTime {
 
   constructor(setDate, setTime, handleChange) {
-    this.dateMask = new Mask(NUMBER_REG_EXP, DATE_MASK);
-    this.timeMask = new Mask(NUMBER_REG_EXP, TIME_MASK);
+    this.dateMask = new Mask(DATE_MASK);
+    this.timeMask = new Mask(TIME_MASK);
     this.setDate = setDate;
     this.setTime = setTime;
     this.handleChange = handleChange;

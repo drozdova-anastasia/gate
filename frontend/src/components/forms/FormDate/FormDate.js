@@ -3,7 +3,7 @@ import { useEffect, useState, useRef } from 'react';
 import './FormDate.css';
 import Mask from '../../../utils/Mask';
 import { handleClosePopup } from '../../../utils/functools';
-import { DATE_MASK, NUMBER_REG_EXP } from '../../../constants/mask';
+import { DATE_MASK } from '../../../constants/mask';
 
 import FormCalendar from '../FormCalendar/FormCalendar';
 
@@ -15,7 +15,7 @@ function FormDate ({ label, handleChange, size, name, value }) {
 
   useEffect(() => handleClosePopup(ref, () => setShow(false)), []);
 
-  useEffect(() => setMask(new Mask(NUMBER_REG_EXP, DATE_MASK)), []);
+  useEffect(() => setMask(new Mask(DATE_MASK)), []);
 
   function handleClick(value) {
     setShow(false);

@@ -2,13 +2,11 @@ import { useEffect, useState } from 'react';
 
 import './UserListFilter.css';
 import { INITIAL_VALUE, IS_ACTIVE_TYPES } from './constants';
-import { COL_3 } from '../../../constants/css';
 
 import ClearButton from '../../forms/ClearButton/ClearButton';
 import FormSelect from '../../forms/FormSelect/FormSelect';
 import FormTextInput from '../../forms/FormTextInput/FormTextInput';
 import FormDateTimeRange from '../../forms/FormDateTimeRange/FormDateTimeRange';
-import Row from '../../forms/Row/Row';
 
 function UserListFilter ({
   getUserList,
@@ -20,65 +18,51 @@ function UserListFilter ({
 
   useEffect(() => getUserList(form), [form]);
 
-  function update(updates) {
-    setForm({...form, ...updates});
-  }
-
   return (
     <form className='user-list-filter'>
-      <Row>
+      <div className='default__row user-list-filter__row'>
         <FormTextInput label='Search'
-                       size={COL_3}
                        placeholder='FIO|Login|SNILS'
                        name='search'
-                       value={form['search']}
-                       handleChange={(event) => update({search: event.target.value})}/>
+                       form={form}
+                       setForm={setForm}/>
         <FormSelect label='Organization'
-                    size={COL_3}
                     choices={organizationList}
                     canClear={true}
                     name='organization'
-                    value={form['organization']}
-                    handleSelect={(value) => update({organization: value})}/>
-        <FormDateTimeRange size={COL_3}
-                           label='Last login'
+                    form={form}
+                    setForm={setForm}/>
+        <FormDateTimeRange label='Last login'
                            fromName='lastLoginFrom'
                            toName='lastLoginTo'
                            setForm={setForm}
                            form={form}/>
-        <FormDateTimeRange size={COL_3}
-                           label='Updated'
+        <FormDateTimeRange label='Updated'
                            fromName='updatedFrom'
                            toName='updatedTo'
                            setForm={setForm}
                            form={form}/>
-      </Row>
-      <Row>
         <FormSelect choices={IS_ACTIVE_TYPES}
-                    size={COL_3}
                     canClear={true}
                     placeholder='Is active'
                     name='isActive'
-                    value={form['isActive']}
-                    handleSelect={(value) => update({isActive: value})}/>
+                    form={form}
+                    setForm={setForm}/>
         <FormSelect choices={serviceNameList}
-                    size={COL_3}
                     canClear={true}
                     placeholder='Service name list'
                     name='serviceName'
-                    value={form['serviceName']}
-                    handleSelect={(value) => update({serviceName: value})}/>
+                    form={form}
+                    setForm={setForm}/>
         <FormSelect choices={permissionList}
-                    size={COL_3}
                     canClear={true}
                     placeholder='Permission list'
                     name='permission'
-                    value={form['permission']}
-                    handleSelect={(value) => update({permission: value})}/>
-        <ClearButton size={COL_3}
-                     handleClick={() => update(INITIAL_VALUE)}
+                    form={form}
+                    setForm={setForm}/>
+        <ClearButton handleClick={() => setForm(INITIAL_VALUE)}
                      name='Clear filters'/>
-      </Row>
+      </div>
     </form>
   );
 }
