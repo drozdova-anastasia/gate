@@ -69,7 +69,7 @@ function FormSelect ({
           <div className='form-select__window'>
             <input className='base-text form-select__window-input'
                    placeholder='Search...'
-                   onChange={handleChange}/> 
+                   onChange={handleChange}/>
             <ul className='form-select__items'>
             {
                 selectedItems.map((item, index) => 

@@ -8,8 +8,14 @@ import { SNILS_MASK } from '../../../constants/mask';
 import Header from '../../shared/Header/Header';
 import FormSelect from '../../forms/FormSelect/FormSelect';
 import FormTextInput from '../../forms/FormTextInput/FormTextInput';
+import FormMiltiselectInput from '../../forms/FormMiltiselectInput/FormMiltiselectInput';
 
-function UserCreateDetail ({ handleLoadUser, userDetail, organizationList }) {
+function UserCreateDetail ({
+  handleLoadUser,
+  userDetail,
+  organizationList,
+  serviceNameList
+}) {
   const [form, setForm] = useState(INITIAL_VALUE);
   const params = useParams();
   const navigate = useNavigate();
@@ -22,10 +28,6 @@ function UserCreateDetail ({ handleLoadUser, userDetail, organizationList }) {
     //    navigate('/');
     //}
   }, []);
-
-  function update(updates) {
-    setForm({...form, ...updates});
-  }
 
   return (
     <main className='user-create-detail'>
@@ -64,6 +66,12 @@ function UserCreateDetail ({ handleLoadUser, userDetail, organizationList }) {
                        form={form}
                        setForm={setForm}/>
       </div>
+      <FormMiltiselectInput choices={serviceNameList}
+                            labelLeft='List'
+                            labelRight='List'
+                            name='serviceNameList'
+                            form={form}
+                            setForm={setForm}/>
     </main>
   );
 }

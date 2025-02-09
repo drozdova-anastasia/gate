@@ -1,0 +1,54 @@
+.form-miltiselect-input {
+  margin: 0;
+  padding: 0;
+  gap: 20px;
+  display: flex;
+}
+
+.form-miltiselect-input__block {
+  margin: 0;
+  padding: 0;
+  width: calc(50% - 10px);
+  display: flex;
+  flex-direction: column;
+}
+
+.form-miltiselect-input__label {
+  margin: 0;
+  padding: 0;
+}
+
+.form-miltiselect-input__input {
+  margin: 0;
+  padding: 0 7.5px;
+  height: 36px;
+  border: 1px solid grey;
+}
+
+.form-miltiselect-input__input:focus {
+  outline: none;
+  border: 1px solid lightblue;
+}
+
+.form-miltiselect-input__items {
+  margin: 10px 0 0 0;
+  padding: 0;
+  height: 300px;
+  overflow-y: auto;
+  border: 1px solid grey;
+}
+
+.form-miltiselect-input__item {
+  margin: 0;
+  padding: 5px;
+  overflow-wrap: break-word;
+}
+
+.form-miltiselect-input__item:hover {
+  background-color: grey;
+}
+
+.form-miltiselect-input__all-action {
+  margin: 0;
+    padding: 0;
+}

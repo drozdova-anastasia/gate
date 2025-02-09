@@ -120,5 +120,21 @@ SERVICE_NAME_LIST = [
     {
         'title': 'MVD',
         'value': 'mvd'
+    },
+    {
+        'title': 'PFR',
+        'value': 'pfr'
+    },
+    {
+        'title': 'FNS',
+        'value': 'fns'
+    },
+    {
+        'title': 'JKH',
+        'value': 'jkh'
+    },
+    {
+        'title': 'mainmainmainmainmainmainmainmainmain1111111ainmainmainmainmainmainmain1111111mainmainmainmainmainmainmainmainmain1111111ainmainmainmainmainmainmain1111111mainmainmainmainmainmainmainmainmain1111111ainmainmainmainmainmainmain1111111',
+        'value': 'main'
     }
 ]

@@ -7,4 +7,5 @@ export const INITIAL_VALUE = {
   'middleName': '',
   'snils': '',
   'isActive': '',
+  'serviceNameList': []
 };

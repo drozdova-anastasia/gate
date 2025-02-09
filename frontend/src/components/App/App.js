@@ -53,9 +53,9 @@ function App() {
       setCurrentUser(user);
       setUserList(userList);
       setOrganizationList(organizationList);
-      setIsProcess(false);
       setServiceNameList(serviceNameList);
       setPermissionList(permissionList);
+      setIsProcess(false);
     });
   }
 
@@ -87,9 +87,11 @@ function App() {
         !isProcess && <Routes>
           <Route path={USER_DETAIL_ROUTE}
                  element={<UserCreateDetail handleLoadUser={getUserDetail}
-                                            organizationList={organizationList}/>}/>
+                                            organizationList={organizationList}
+                                            serviceNameList={serviceNameList}/>}/>
           <Route path={USER_CREATE_ROUTE}
-                 element={<UserCreateDetail organizationList={organizationList}/>}/>
+                 element={<UserCreateDetail organizationList={organizationList}
+                                            serviceNameList={serviceNameList}/>}/>
           <Route path={USER_LIST_ROUTE}
                  element={
                    <UserList userList={userList}
