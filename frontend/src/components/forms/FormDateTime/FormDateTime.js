@@ -6,7 +6,15 @@ import { handleClosePopup } from '../../../utils/functools';
 
 import FormCalendar from '../FormCalendar/FormCalendar';
 
-function FormDateTime ({ label, handleChange, name, value, errors }) {
+function FormDateTime ({
+  label,
+  setForm,
+  name,
+  value,
+  errors,
+  required,
+  form
+}) {
   const [dateTimeObj, setDateTimeObj] = useState(null);
   const [date, setDate] = useState('');
   const [time, setTime] = useState('');
@@ -18,14 +26,18 @@ function FormDateTime ({ label, handleChange, name, value, errors }) {
 
   useEffect(
     () => {
-     const dateTimeObj = new DateTime(setDate, setTime, handleChange);
+     const dateTimeObj = new DateTime(
+      setDate,
+      setTime,
+      (value) => setForm({...form, [name]: value})
+    );
      setDateTimeObj(dateTimeObj);
-     dateTimeObj.applyDateTime(value);
+     dateTimeObj.applyDateTime(form[name]);
     },
     []
   );
 
-  useEffect(() => dateTimeObj?.applyDateTime(value), [value]);
+  useEffect(() => dateTimeObj?.applyDateTime(form[name]), [form[name]]);
 
   function handleClick(value) {
     setShow(false);
@@ -45,7 +57,7 @@ function FormDateTime ({ label, handleChange, name, value, errors }) {
     <div className='form-date-time'
          ref={ref}>
       <label className='base-text form-date-time__label'
-             htmlFor={name}>{label}</label>
+             htmlFor={name}>{`${[label, required ? '*' : ''].join('')}`}</label>
       <div className='form-date-time__input-block'>
         <input ref={inputRef}
                className='clickable base-text form-date-time__date-input'

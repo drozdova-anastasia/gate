@@ -8,7 +8,9 @@ import { SNILS_MASK } from '../../../constants/mask';
 import Header from '../../shared/Header/Header';
 import FormSelect from '../../forms/FormSelect/FormSelect';
 import FormTextInput from '../../forms/FormTextInput/FormTextInput';
+import FormDateTime from '../../forms/FormDateTime/FormDateTime';
 import FormMiltiselectInput from '../../forms/FormMiltiselectInput/FormMiltiselectInput';
+import FromServiceSettings from '../../forms/FromServiceSettings/FromServiceSettings';
 
 function UserCreateDetail ({
   handleLoadUser,
@@ -36,16 +38,19 @@ function UserCreateDetail ({
         <FormTextInput label='Логин'
                        name='login'
                        form={form}
+                       required={true}
                        setForm={setForm}/>
         <FormTextInput label='Пароль'
                        name='password'
                        type='password'
                        form={form}
+                       required={true}
                        setForm={setForm}/>
         <FormSelect label='Организация'
                     choices={organizationList}
                     name='organization'
                     form={form}
+                    required={true}
                     setForm={setForm}/>
         <FormTextInput label='Фамилия'
                        name='firstName'
@@ -64,7 +69,15 @@ function UserCreateDetail ({
                        placeholder={SNILS_MASK}
                        mask={SNILS_MASK}
                        form={form}
+                       required={true}
                        setForm={setForm}/>
+        {
+          form['lastLogin'] &&
+          <FormDateTime label='Last login'
+                        name='lastLogin'
+                        form={form}
+                        setForm={setForm}/>
+        }
       </div>
       <FormMiltiselectInput choices={serviceNameList}
                             labelLeft='Список доступных сервисов'
@@ -78,6 +91,7 @@ function UserCreateDetail ({
                             name='serviceNameList'
                             form={form}
                             setForm={setForm}/>
+      <FromServiceSettings/>
     </main>
   );
 }

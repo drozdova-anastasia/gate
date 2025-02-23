@@ -7,7 +7,7 @@ import { DATE_MASK } from '../../../constants/mask';
 
 import FormCalendar from '../FormCalendar/FormCalendar';
 
-function FormDate ({ label, handleChange, size, name, value }) {
+function FormDate ({ label, name, required, errors, form, setForm }) {
   const [mask, setMask] = useState(null);
   const [show, setShow] = useState(false);
   const ref = useRef();
@@ -19,25 +19,28 @@ function FormDate ({ label, handleChange, size, name, value }) {
 
   function handleClick(value) {
     setShow(false);
-    handleChange(value);
+    setForm({...form, [name]: value});
   }
 
   function handleChangeValue(event) {
     setShow(false);
-    mask.apply(event.target.value, handleChange);
+    mask.apply(
+      event.target.value,
+      (value) => setForm({...form, [name]: value})
+    );
   }
 
   return (
-    <div className={`form-date${size ? ` ${size}` : ''}`}
+    <div className='form-date'
          ref={ref}>
       <label className='base-text form-date__label'
-             htmlFor={name}>{label}</label>
+             htmlFor={name}>{`${[label, required ? '*' : ''].join('')}`}</label>
       <input ref={inputRef}
              className='clickable base-text form-date__input'
              onChange={handleChangeValue}
              name={name}
              id={name}
-             value={value}
+             value={form[name]}
              placeholder='____-__-__'
              onClick={() => setShow(!show)}/>
       <span className='clickable form-date__arrow'
@@ -46,9 +49,10 @@ function FormDate ({ label, handleChange, size, name, value }) {
         show &&
         <div className='form-date__window'>
           <FormCalendar handleClick={handleClick}
-                        value={value}/>
+                        value={form[name]}/>
         </div>
       }
+      <span className='error-message'>{(errors || []).join(', ')}</span>
     </div>
   );
 }

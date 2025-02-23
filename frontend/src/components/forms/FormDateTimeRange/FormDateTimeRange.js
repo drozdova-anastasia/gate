@@ -13,8 +13,7 @@ function FormDateTimeRange ({ label, form, setForm, fromName, toName }) {
   const INIT_FROM = `${TODAY}T00:00:00Z`;
   const INIT_TO = `${TODAY}T23:59:59Z`;
   const [show, setShow] = useState(false);
-  const [from, setFrom] = useState('');
-  const [to, setTo] = useState('');
+  const [localForm, setLocalForm] = useState({[fromName]: '', [toName]: ''});
   const [range, setRange] = useState('');
   const ref = useRef();
   const inputRef = useRef();
@@ -31,8 +30,7 @@ function FormDateTimeRange ({ label, form, setForm, fromName, toName }) {
 
   function clean() {
     setRange('');
-    setFrom(INIT_FROM);
-    setTo(INIT_TO);
+    setLocalForm({[fromName]: INIT_FROM, [toName]: INIT_TO});
   }
 
   function handleCancel(event) {
@@ -42,8 +40,14 @@ function FormDateTimeRange ({ label, form, setForm, fromName, toName }) {
   }
 
   function handleConfirm() {
-    setForm({...form, [fromName]: from, [toName]: to});
-    setRange(`from ${from.split('T')[0] || ''} to ${to.split('T')[0] || ''}`);
+    setForm({
+      ...form,
+      [fromName]: localForm[fromName],
+      [toName]: localForm[toName]
+    });
+    setRange(
+      `from ${localForm[fromName].split('T')[0] || ''} to ${localForm[toName].split('T')[0] || ''}`
+    );
     setShow(false);
   }
 
@@ -72,14 +76,12 @@ function FormDateTimeRange ({ label, form, setForm, fromName, toName }) {
         <div className='form-datetime-range__window'>
           <FormDateTime label='Date and time, from'
                         name={fromName}
-                        value={from}
-                        handleChange={setFrom}
-                        errors={['Datetime error.']}/>
+                        form={localForm}
+                        setForm={setLocalForm}/>
           <FormDateTime label='Date and time, to'
                         name={toName}
-                        value={to}
-                        handleChange={setTo}
-                        errors={['Datetime error.']}/>
+                        form={localForm}
+                        setForm={setLocalForm}/>
           <Button handleClick={handleConfirm}
                   name='Confirm'/>
         </div>

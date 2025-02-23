@@ -11,6 +11,8 @@ function FormMiltiselectInput ({
   form
 }) {
   const [avaliableList, setAvaliableList] = useState([]);
+  const [avaliableInput, setAvaliableInput] = useState('');
+  const [selectedInput, setSelectedInput] = useState('');
   const [dispalyAvaliableList, setDispalyAvaliableList] = useState([]);
   const [dispalySelectedList, setDispalySelectedList] = useState([]);
   const [handbook, setHandbook] = useState({});
@@ -29,24 +31,43 @@ function FormMiltiselectInput ({
     []
   );
 
+  useEffect(
+    () => setDispalyAvaliableList(
+      avaliableList.filter(item => handbook[item].includes(avaliableInput))
+    ),
+    [avaliableList, avaliableInput]
+  );
+
+  useEffect(
+    () => setDispalySelectedList(
+      form[name].filter(item => handbook[item].includes(selectedInput))
+    ),
+    [form[name], selectedInput]
+  );
+
+  function update(value) {
+    setForm({...form, [name]: value});
+  }
+
   function handleSelect(value) {
-    setAvaliableList(avaliableList.filter(item => item !== value));
-    setForm({...form, [name]: [...form[name], value]});
+    const data = avaliableList.filter(item => item !== value);
+    setAvaliableList(data);
+    update([...form[name], value]);
   }
 
   function handleSelectAll() {
-    setForm({...form, [name]: [...avaliableList, ...form[name]]});
+    update([...avaliableList, ...form[name]]);
     setAvaliableList([]);
   }
 
   function handleRemove(value) {
     setAvaliableList([...avaliableList, value]);
-    setForm({...form, [name]: form[name].filter(item => item !== value)});
+    update(form[name].filter(item => item !== value));
   }
 
   function handleRemoveAll() {
     setAvaliableList([...avaliableList, ...form[name]]);
-    setForm({...form, [name]: []});
+    update([]);
   }
 
   return (
@@ -56,13 +77,14 @@ function FormMiltiselectInput ({
                htmlFor=''>{labelLeft}</label>
         <input className='base-text form-miltiselect-input__input'
                placeholder='Поиск...'
-               onChange={() => {}}/>
+               onChange={(event) => setAvaliableInput(event.target.value)}
+               value={avaliableInput}/>
         <ul className='form-miltiselect-input__items'>
           {
-            avaliableList.map((item, index) =>
+            dispalyAvaliableList.map((item, index) =>
               <li className='clickable base-text form-miltiselect-input__item'
                   key={index}
-                  onClick={() => handleSelect(item)}>{handbook[item]}</li>
+                  onDoubleClick={() => handleSelect(item)}>{handbook[item]}</li>
             )
           }
         </ul>
@@ -74,13 +96,14 @@ function FormMiltiselectInput ({
                htmlFor=''>{labelRight}</label>
         <input className='base-text form-miltiselect-input__input'
                placeholder='Поиск...'
-               onChange={() => {}}/>
+               onChange={(event) => setSelectedInput(event.target.value)}
+               value={selectedInput}/>
         <ul className='form-miltiselect-input__items'>
           {
-            form[name].map((item, index) =>
+            dispalySelectedList.map((item, index) =>
               <li className='clickable base-text form-miltiselect-input__item'
                   key={index}
-                  onClick={() => handleRemove(item)}>{handbook[item]}</li>
+                  onDoubleClick={() => handleRemove(item)}>{handbook[item]}</li>
             )
           }
         </ul>

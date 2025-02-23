@@ -7,5 +7,6 @@ export const INITIAL_VALUE = {
   'middleName': '',
   'snils': '',
   'isActive': '',
-  'serviceNameList': []
+  'serviceNameList': [],
+  'lastLogin': '2024-01-29T20:55:00.123456Z'
 };

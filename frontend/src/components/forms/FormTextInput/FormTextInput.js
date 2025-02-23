@@ -13,6 +13,7 @@ function FormTextInput ({
   setForm,
   form,
   name,
+  required
 }) {
   const [maskObj, setMaskObj] = useState(null);
 
@@ -36,7 +37,7 @@ function FormTextInput ({
   return (
     <div className='form-text-input'>
       <label className={`base-text form-text-input__label${ellipsis && ' form-text-input__label_ellipsis'}`}
-             htmlFor={name}>{label}</label>
+             htmlFor={name}>{`${[label, required ? '*' : ''].join('')}`}</label>
       <input type={type || 'text'}
              id={name}
              name={name}

@@ -13,6 +13,7 @@ function FormSelect ({
   name,
   setForm,
   form,
+  required,
 }) {
   const [selectedItems, setSelectedItems] = useState(choices);
   const [show, setShow] = useState(false);
@@ -45,7 +46,7 @@ function FormSelect ({
          ref={ref}>
       <div className='form-select__block'>
         <label className='base-text form-select__label'
-               htmlFor={name}>{label}</label>
+               htmlFor={name}>{`${[label, required ? '*' : ''].join('')}`}</label>
         <input ref={inputRef}
                className='base-text form-select__input'
                onChange={() => {}}

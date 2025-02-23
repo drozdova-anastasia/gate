@@ -134,7 +134,23 @@ SERVICE_NAME_LIST = [
         'value': 'jkh'
     },
     {
-        'title': 'mainmainmainmainmainmainmainmainmain1111111ainmainmainmainmainmainmain1111111mainmainmainmainmainmainmainmainmain1111111ainmainmainmainmainmainmain1111111mainmainmainmainmainmainmainmainmain1111111ainmainmainmainmainmainmain1111111',
+        'title': 'mainmain',
         'value': 'main'
+    },
+    {
+        'title': 'mainmainmain',
+        'value': 'mainmain'
+    },
+    {
+        'title': 'mainmainmainmain',
+        'value': 'mainmainmain'
+    },
+    {
+        'title': 'mainmainmainmainmain',
+        'value': 'mainmainmainmain'
+    },
+    {
+        'title': 'mainmainmainmainmainmainmainmainmain1111111ainmainmainmainmainmainmain1111111mainmainmainmainmainmainmainmainmain1111111ainmainmainmainmainmainmain1111111mainmainmainmainmainmainmainmainmain1111111ainmainmainmainmainmainmain1111111',
+        'value': 'mainmainmainmainmain'
     }
 ]
